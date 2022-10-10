@@ -21,7 +21,7 @@ library(tidyverse)
 ```
 
     ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-    ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+    ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.5 
     ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
     ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
     ## ✔ readr   2.1.3      ✔ forcats 0.5.2 
@@ -40,19 +40,19 @@ library(tidyverse)
 
 ## For Both Milestones
 
-- Each milestone is worth 45 points. The number of points allocated to
-  each task will be annotated within each deliverable. Tasks that are
-  more challenging will often be allocated more points.
+-   Each milestone is worth 45 points. The number of points allocated to
+    each task will be annotated within each deliverable. Tasks that are
+    more challenging will often be allocated more points.
 
-- 10 points will be allocated to the reproducibility, cleanliness, and
-  coherence of the overall analysis. While the two milestones will be
-  submitted as independent deliverables, the analysis itself is a
-  continuum - think of it as two chapters to a story. Each chapter, or
-  in this case, portion of your analysis, should be easily followed
-  through by someone unfamiliar with the content.
-  [Here](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/)
-  is a good resource for what constitutes “good code”. Learning good
-  coding practices early in your career will save you hassle later on!
+-   10 points will be allocated to the reproducibility, cleanliness, and
+    coherence of the overall analysis. While the two milestones will be
+    submitted as independent deliverables, the analysis itself is a
+    continuum - think of it as two chapters to a story. Each chapter, or
+    in this case, portion of your analysis, should be easily followed
+    through by someone unfamiliar with the content.
+    [Here](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/)
+    is a good resource for what constitutes “good code”. Learning good
+    coding practices early in your career will save you hassle later on!
 
 ## For Milestone 1
 
@@ -76,11 +76,11 @@ for tagging your release on Github.
 
 By the end of this milestone, you should:
 
-- Become familiar with your dataset of choosing
-- Select 4 questions that you would like to answer with your data
-- Generate a reproducible and clear report using R Markdown
-- Become familiar with manipulating and summarizing your data in tibbles
-  using `dplyr`, with a research question in mind.
+-   Become familiar with your dataset of choosing
+-   Select 4 questions that you would like to answer with your data
+-   Generate a reproducible and clear report using R Markdown
+-   Become familiar with manipulating and summarizing your data in
+    tibbles using `dplyr`, with a research question in mind.
 
 # Task 1: Choose your favorite dataset (10 points)
 
@@ -88,42 +88,42 @@ The `datateachr` package by Hayley Boyce and Jordan Bourak currently
 composed of 7 semi-tidy datasets for educational purposes. Here is a
 brief description of each dataset:
 
-- *apt_buildings*: Acquired courtesy of The City of Toronto’s Open Data
-  Portal. It currently has 3455 rows and 37 columns.
+-   *apt_buildings*: Acquired courtesy of The City of Toronto’s Open
+    Data Portal. It currently has 3455 rows and 37 columns.
 
-- *building_permits*: Acquired courtesy of The City of Vancouver’s Open
-  Data Portal. It currently has 20680 rows and 14 columns.
+-   *building_permits*: Acquired courtesy of The City of Vancouver’s
+    Open Data Portal. It currently has 20680 rows and 14 columns.
 
-- *cancer_sample*: Acquired courtesy of UCI Machine Learning Repository.
-  It currently has 569 rows and 32 columns.
+-   *cancer_sample*: Acquired courtesy of UCI Machine Learning
+    Repository. It currently has 569 rows and 32 columns.
 
-- *flow_sample*: Acquired courtesy of The Government of Canada’s
-  Historical Hydrometric Database. It currently has 218 rows and 7
-  columns.
+-   *flow_sample*: Acquired courtesy of The Government of Canada’s
+    Historical Hydrometric Database. It currently has 218 rows and 7
+    columns.
 
-- *parking_meters*: Acquired courtesy of The City of Vancouver’s Open
-  Data Portal. It currently has 10032 rows and 22 columns.
+-   *parking_meters*: Acquired courtesy of The City of Vancouver’s Open
+    Data Portal. It currently has 10032 rows and 22 columns.
 
-- *steam_games*: Acquired courtesy of Kaggle. It currently has 40833
-  rows and 21 columns.
+-   *steam_games*: Acquired courtesy of Kaggle. It currently has 40833
+    rows and 21 columns.
 
-- *vancouver_trees*: Acquired courtesy of The City of Vancouver’s Open
-  Data Portal. It currently has 146611 rows and 20 columns.
+-   *vancouver_trees*: Acquired courtesy of The City of Vancouver’s Open
+    Data Portal. It currently has 146611 rows and 20 columns.
 
 **Things to keep in mind**
 
-- We hope that this project will serve as practice for carrying our your
-  own *independent* data analysis. Remember to comment your code, be
-  explicit about what you are doing, and write notes in this markdown
-  document when you feel that context is required. As you advance in the
-  project, prompts and hints to do this will be diminished - it’ll be up
-  to you!
+-   We hope that this project will serve as practice for carrying our
+    your own *independent* data analysis. Remember to comment your code,
+    be explicit about what you are doing, and write notes in this
+    markdown document when you feel that context is required. As you
+    advance in the project, prompts and hints to do this will be
+    diminished - it’ll be up to you!
 
-- Before choosing a dataset, you should always keep in mind **your
-  goal**, or in other ways, *what you wish to achieve with this data*.
-  This mini data-analysis project focuses on *data wrangling*,
-  *tidying*, and *visualization*. In short, it’s a way for you to get
-  your feet wet with exploring data on your own.
+-   Before choosing a dataset, you should always keep in mind **your
+    goal**, or in other ways, *what you wish to achieve with this data*.
+    This mini data-analysis project focuses on *data wrangling*,
+    *tidying*, and *visualization*. In short, it’s a way for you to get
+    your feet wet with exploring data on your own.
 
 And that is exactly the first thing that you will do!
 
@@ -140,10 +140,10 @@ understand your data.
 
 <!-------------------------- Start your work below ---------------------------->
 
-1: CHOICE_1\_HERE  
-2: CHOICE_2\_HERE  
-3: CHOICE_3\_HERE  
-4: CHOICE_4\_HERE
+1.  `steam_games`
+2.  `apt_buildings`
+3.  `cancer_sample`
+4.  `vancouver_trees`
 
 <!----------------------------------------------------------------------------->
 
@@ -160,30 +160,267 @@ comments outside of the code chunk?
 
 <!-------------------------- Start your work below ---------------------------->
 
+------------------------------------------------------------------------
+
+-   **Attribute 1**: Number of Rows  
+-   **Attribute 2**: Number of Variables  
+-   **Attribute 3**: List of all variables and types of variables  
+
+Attributes of `steam_games` dataset:
+
 ``` r
-### EXPLORE HERE ###
-steam_games
+glimpse(steam_games)
 ```
 
-    ## # A tibble: 40,833 × 21
-    ##       id url         types name  desc_…¹ recen…² all_r…³ relea…⁴ devel…⁵ publi…⁶
-    ##    <dbl> <chr>       <chr> <chr> <chr>   <chr>   <chr>   <chr>   <chr>   <chr>  
-    ##  1     1 https://st… app   DOOM  Now in… Very P… Very P… May 12… id Sof… Bethes…
-    ##  2     2 https://st… app   PLAY… PLAYER… Mixed,… Mixed,… Dec 21… PUBG C… PUBG C…
-    ##  3     3 https://st… app   BATT… Take c… Mixed,… Mostly… Apr 24… Harebr… Parado…
-    ##  4     4 https://st… app   DayZ  The po… Mixed,… Mixed,… Dec 13… Bohemi… Bohemi…
-    ##  5     5 https://st… app   EVE … EVE On… Mixed,… Mostly… May 6,… CCP     CCP,CCP
-    ##  6     6 https://st… bund… Gran… Grand … NaN     NaN     NaN     Rockst… Rockst…
-    ##  7     7 https://st… app   Devi… The ul… Very P… Very P… Mar 7,… CAPCOM… CAPCOM…
-    ##  8     8 https://st… app   Huma… Human:… Very P… Very P… Jul 22… No Bra… Curve …
-    ##  9     9 https://st… app   They… They A… Very P… Very P… Dec 12… Numant… Numant…
-    ## 10    10 https://st… app   Warh… In a w… <NA>    Mixed,… May 31… Eko So… Bigben…
-    ## # … with 40,823 more rows, 11 more variables: popular_tags <chr>,
-    ## #   game_details <chr>, languages <chr>, achievements <dbl>, genre <chr>,
-    ## #   game_description <chr>, mature_content <chr>, minimum_requirements <chr>,
-    ## #   recommended_requirements <chr>, original_price <dbl>, discount_price <dbl>,
-    ## #   and abbreviated variable names ¹​desc_snippet, ²​recent_reviews,
-    ## #   ³​all_reviews, ⁴​release_date, ⁵​developer, ⁶​publisher
+    ## Rows: 40,833
+    ## Columns: 21
+    ## $ id                       <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14…
+    ## $ url                      <chr> "https://store.steampowered.com/app/379720/DO…
+    ## $ types                    <chr> "app", "app", "app", "app", "app", "bundle", …
+    ## $ name                     <chr> "DOOM", "PLAYERUNKNOWN'S BATTLEGROUNDS", "BAT…
+    ## $ desc_snippet             <chr> "Now includes all three premium DLC packs (Un…
+    ## $ recent_reviews           <chr> "Very Positive,(554),- 89% of the 554 user re…
+    ## $ all_reviews              <chr> "Very Positive,(42,550),- 92% of the 42,550 u…
+    ## $ release_date             <chr> "May 12, 2016", "Dec 21, 2017", "Apr 24, 2018…
+    ## $ developer                <chr> "id Software", "PUBG Corporation", "Harebrain…
+    ## $ publisher                <chr> "Bethesda Softworks,Bethesda Softworks", "PUB…
+    ## $ popular_tags             <chr> "FPS,Gore,Action,Demons,Shooter,First-Person,…
+    ## $ game_details             <chr> "Single-player,Multi-player,Co-op,Steam Achie…
+    ## $ languages                <chr> "English,French,Italian,German,Spanish - Spai…
+    ## $ achievements             <dbl> 54, 37, 128, NA, NA, NA, 51, 55, 34, 43, 72, …
+    ## $ genre                    <chr> "Action", "Action,Adventure,Massively Multipl…
+    ## $ game_description         <chr> "About This Game Developed by id software, th…
+    ## $ mature_content           <chr> NA, "Mature Content Description  The develope…
+    ## $ minimum_requirements     <chr> "Minimum:,OS:,Windows 7/8.1/10 (64-bit versio…
+    ## $ recommended_requirements <chr> "Recommended:,OS:,Windows 7/8.1/10 (64-bit ve…
+    ## $ original_price           <dbl> 19.99, 29.99, 39.99, 44.99, 0.00, NA, 59.99, …
+    ## $ discount_price           <dbl> 14.99, NA, NA, NA, NA, 35.18, 70.42, 17.58, N…
+
+``` r
+steam_games %>% head %>% collect %>% lapply(typeof) %>% unlist
+```
+
+    ##                       id                      url                    types 
+    ##                 "double"              "character"              "character" 
+    ##                     name             desc_snippet           recent_reviews 
+    ##              "character"              "character"              "character" 
+    ##              all_reviews             release_date                developer 
+    ##              "character"              "character"              "character" 
+    ##                publisher             popular_tags             game_details 
+    ##              "character"              "character"              "character" 
+    ##                languages             achievements                    genre 
+    ##              "character"                 "double"              "character" 
+    ##         game_description           mature_content     minimum_requirements 
+    ##              "character"              "character"              "character" 
+    ## recommended_requirements           original_price           discount_price 
+    ##              "character"                 "double"                 "double"
+
+------------------------------------------------------------------------
+
+Attributes of `vancouver_trees` dataset:
+
+``` r
+glimpse(vancouver_trees)
+```
+
+    ## Rows: 146,611
+    ## Columns: 20
+    ## $ tree_id            <dbl> 149556, 149563, 149579, 149590, 149604, 149616, 149…
+    ## $ civic_number       <dbl> 494, 450, 4994, 858, 5032, 585, 4909, 4925, 4969, 7…
+    ## $ std_street         <chr> "W 58TH AV", "W 58TH AV", "WINDSOR ST", "E 39TH AV"…
+    ## $ genus_name         <chr> "ULMUS", "ZELKOVA", "STYRAX", "FRAXINUS", "ACER", "…
+    ## $ species_name       <chr> "AMERICANA", "SERRATA", "JAPONICA", "AMERICANA", "C…
+    ## $ cultivar_name      <chr> "BRANDON", NA, NA, "AUTUMN APPLAUSE", NA, "CHANTICL…
+    ## $ common_name        <chr> "BRANDON ELM", "JAPANESE ZELKOVA", "JAPANESE SNOWBE…
+    ## $ assigned           <chr> "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "…
+    ## $ root_barrier       <chr> "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "…
+    ## $ plant_area         <chr> "N", "N", "4", "4", "4", "B", "6", "6", "3", "3", "…
+    ## $ on_street_block    <dbl> 400, 400, 4900, 800, 5000, 500, 4900, 4900, 4900, 7…
+    ## $ on_street          <chr> "W 58TH AV", "W 58TH AV", "WINDSOR ST", "E 39TH AV"…
+    ## $ neighbourhood_name <chr> "MARPOLE", "MARPOLE", "KENSINGTON-CEDAR COTTAGE", "…
+    ## $ street_side_name   <chr> "EVEN", "EVEN", "EVEN", "EVEN", "EVEN", "ODD", "ODD…
+    ## $ height_range_id    <dbl> 2, 4, 3, 4, 2, 2, 3, 3, 2, 2, 2, 5, 3, 2, 2, 2, 2, …
+    ## $ diameter           <dbl> 10.00, 10.00, 4.00, 18.00, 9.00, 5.00, 15.00, 14.00…
+    ## $ curb               <chr> "N", "N", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "…
+    ## $ date_planted       <date> 1999-01-13, 1996-05-31, 1993-11-22, 1996-04-29, 19…
+    ## $ longitude          <dbl> -123.1161, -123.1147, -123.0846, -123.0870, -123.08…
+    ## $ latitude           <dbl> 49.21776, 49.21776, 49.23938, 49.23469, 49.23894, 4…
+
+``` r
+vancouver_trees %>% head %>% collect %>% lapply(typeof) %>% unlist
+```
+
+    ##            tree_id       civic_number         std_street         genus_name 
+    ##           "double"           "double"        "character"        "character" 
+    ##       species_name      cultivar_name        common_name           assigned 
+    ##        "character"        "character"        "character"        "character" 
+    ##       root_barrier         plant_area    on_street_block          on_street 
+    ##        "character"        "character"           "double"        "character" 
+    ## neighbourhood_name   street_side_name    height_range_id           diameter 
+    ##        "character"        "character"           "double"           "double" 
+    ##               curb       date_planted          longitude           latitude 
+    ##        "character"           "double"           "double"           "double"
+
+------------------------------------------------------------------------
+
+Attributes of `cancer_sample` dataset:
+
+``` r
+glimpse(cancer_sample)
+```
+
+    ## Rows: 569
+    ## Columns: 32
+    ## $ ID                      <dbl> 842302, 842517, 84300903, 84348301, 84358402, …
+    ## $ diagnosis               <chr> "M", "M", "M", "M", "M", "M", "M", "M", "M", "…
+    ## $ radius_mean             <dbl> 17.990, 20.570, 19.690, 11.420, 20.290, 12.450…
+    ## $ texture_mean            <dbl> 10.38, 17.77, 21.25, 20.38, 14.34, 15.70, 19.9…
+    ## $ perimeter_mean          <dbl> 122.80, 132.90, 130.00, 77.58, 135.10, 82.57, …
+    ## $ area_mean               <dbl> 1001.0, 1326.0, 1203.0, 386.1, 1297.0, 477.1, …
+    ## $ smoothness_mean         <dbl> 0.11840, 0.08474, 0.10960, 0.14250, 0.10030, 0…
+    ## $ compactness_mean        <dbl> 0.27760, 0.07864, 0.15990, 0.28390, 0.13280, 0…
+    ## $ concavity_mean          <dbl> 0.30010, 0.08690, 0.19740, 0.24140, 0.19800, 0…
+    ## $ concave_points_mean     <dbl> 0.14710, 0.07017, 0.12790, 0.10520, 0.10430, 0…
+    ## $ symmetry_mean           <dbl> 0.2419, 0.1812, 0.2069, 0.2597, 0.1809, 0.2087…
+    ## $ fractal_dimension_mean  <dbl> 0.07871, 0.05667, 0.05999, 0.09744, 0.05883, 0…
+    ## $ radius_se               <dbl> 1.0950, 0.5435, 0.7456, 0.4956, 0.7572, 0.3345…
+    ## $ texture_se              <dbl> 0.9053, 0.7339, 0.7869, 1.1560, 0.7813, 0.8902…
+    ## $ perimeter_se            <dbl> 8.589, 3.398, 4.585, 3.445, 5.438, 2.217, 3.18…
+    ## $ area_se                 <dbl> 153.40, 74.08, 94.03, 27.23, 94.44, 27.19, 53.…
+    ## $ smoothness_se           <dbl> 0.006399, 0.005225, 0.006150, 0.009110, 0.0114…
+    ## $ compactness_se          <dbl> 0.049040, 0.013080, 0.040060, 0.074580, 0.0246…
+    ## $ concavity_se            <dbl> 0.05373, 0.01860, 0.03832, 0.05661, 0.05688, 0…
+    ## $ concave_points_se       <dbl> 0.015870, 0.013400, 0.020580, 0.018670, 0.0188…
+    ## $ symmetry_se             <dbl> 0.03003, 0.01389, 0.02250, 0.05963, 0.01756, 0…
+    ## $ fractal_dimension_se    <dbl> 0.006193, 0.003532, 0.004571, 0.009208, 0.0051…
+    ## $ radius_worst            <dbl> 25.38, 24.99, 23.57, 14.91, 22.54, 15.47, 22.8…
+    ## $ texture_worst           <dbl> 17.33, 23.41, 25.53, 26.50, 16.67, 23.75, 27.6…
+    ## $ perimeter_worst         <dbl> 184.60, 158.80, 152.50, 98.87, 152.20, 103.40,…
+    ## $ area_worst              <dbl> 2019.0, 1956.0, 1709.0, 567.7, 1575.0, 741.6, …
+    ## $ smoothness_worst        <dbl> 0.1622, 0.1238, 0.1444, 0.2098, 0.1374, 0.1791…
+    ## $ compactness_worst       <dbl> 0.6656, 0.1866, 0.4245, 0.8663, 0.2050, 0.5249…
+    ## $ concavity_worst         <dbl> 0.71190, 0.24160, 0.45040, 0.68690, 0.40000, 0…
+    ## $ concave_points_worst    <dbl> 0.26540, 0.18600, 0.24300, 0.25750, 0.16250, 0…
+    ## $ symmetry_worst          <dbl> 0.4601, 0.2750, 0.3613, 0.6638, 0.2364, 0.3985…
+    ## $ fractal_dimension_worst <dbl> 0.11890, 0.08902, 0.08758, 0.17300, 0.07678, 0…
+
+``` r
+cancer_sample %>% head %>% collect %>% lapply(typeof) %>% unlist
+```
+
+    ##                      ID               diagnosis             radius_mean 
+    ##                "double"             "character"                "double" 
+    ##            texture_mean          perimeter_mean               area_mean 
+    ##                "double"                "double"                "double" 
+    ##         smoothness_mean        compactness_mean          concavity_mean 
+    ##                "double"                "double"                "double" 
+    ##     concave_points_mean           symmetry_mean  fractal_dimension_mean 
+    ##                "double"                "double"                "double" 
+    ##               radius_se              texture_se            perimeter_se 
+    ##                "double"                "double"                "double" 
+    ##                 area_se           smoothness_se          compactness_se 
+    ##                "double"                "double"                "double" 
+    ##            concavity_se       concave_points_se             symmetry_se 
+    ##                "double"                "double"                "double" 
+    ##    fractal_dimension_se            radius_worst           texture_worst 
+    ##                "double"                "double"                "double" 
+    ##         perimeter_worst              area_worst        smoothness_worst 
+    ##                "double"                "double"                "double" 
+    ##       compactness_worst         concavity_worst    concave_points_worst 
+    ##                "double"                "double"                "double" 
+    ##          symmetry_worst fractal_dimension_worst 
+    ##                "double"                "double"
+
+------------------------------------------------------------------------
+
+Attributes of `apt_buildings` dataset:
+
+``` r
+glimpse(apt_buildings)
+```
+
+    ## Rows: 3,455
+    ## Columns: 37
+    ## $ id                               <dbl> 10359, 10360, 10361, 10362, 10363, 10…
+    ## $ air_conditioning                 <chr> "NONE", "NONE", "NONE", "NONE", "NONE…
+    ## $ amenities                        <chr> "Outdoor rec facilities", "Outdoor po…
+    ## $ balconies                        <chr> "YES", "YES", "YES", "YES", "NO", "NO…
+    ## $ barrier_free_accessibilty_entr   <chr> "YES", "NO", "NO", "YES", "NO", "NO",…
+    ## $ bike_parking                     <chr> "0 indoor parking spots and 10 outdoo…
+    ## $ exterior_fire_escape             <chr> "NO", "NO", "NO", "YES", "NO", NA, "N…
+    ## $ fire_alarm                       <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ garbage_chutes                   <chr> "YES", "YES", "NO", "NO", "NO", "NO",…
+    ## $ heating_type                     <chr> "HOT WATER", "HOT WATER", "HOT WATER"…
+    ## $ intercom                         <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ laundry_room                     <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ locker_or_storage_room           <chr> "NO", "YES", "YES", "YES", "NO", "YES…
+    ## $ no_of_elevators                  <dbl> 3, 3, 0, 1, 0, 0, 0, 2, 4, 2, 0, 2, 2…
+    ## $ parking_type                     <chr> "Underground Garage , Garage accessib…
+    ## $ pets_allowed                     <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ prop_management_company_name     <chr> NA, "SCHICKEDANZ BROS. PROPERTIES", N…
+    ## $ property_type                    <chr> "PRIVATE", "PRIVATE", "PRIVATE", "PRI…
+    ## $ rsn                              <dbl> 4154812, 4154815, 4155295, 4155309, 4…
+    ## $ separate_gas_meters              <chr> "NO", "NO", "NO", "NO", "NO", "NO", "…
+    ## $ separate_hydro_meters            <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ separate_water_meters            <chr> "NO", "NO", "NO", "NO", "NO", "NO", "…
+    ## $ site_address                     <chr> "65  FOREST MANOR RD", "70  CLIPPER R…
+    ## $ sprinkler_system                 <chr> "YES", "YES", "NO", "YES", "NO", "NO"…
+    ## $ visitor_parking                  <chr> "PAID", "FREE", "UNAVAILABLE", "UNAVA…
+    ## $ ward                             <chr> "17", "17", "03", "03", "02", "02", "…
+    ## $ window_type                      <chr> "DOUBLE PANE", "DOUBLE PANE", "DOUBLE…
+    ## $ year_built                       <dbl> 1967, 1970, 1927, 1959, 1943, 1952, 1…
+    ## $ year_registered                  <dbl> 2017, 2017, 2017, 2017, 2017, NA, 201…
+    ## $ no_of_storeys                    <dbl> 17, 14, 4, 5, 4, 4, 4, 7, 32, 4, 4, 7…
+    ## $ emergency_power                  <chr> "NO", "YES", "NO", "NO", "NO", "NO", …
+    ## $ `non-smoking_building`           <chr> "YES", "NO", "YES", "YES", "YES", "NO…
+    ## $ no_of_units                      <dbl> 218, 206, 34, 42, 25, 34, 14, 105, 57…
+    ## $ no_of_accessible_parking_spaces  <dbl> 8, 10, 20, 42, 12, 0, 5, 1, 1, 6, 12,…
+    ## $ facilities_available             <chr> "Recycling bins", "Green Bin / Organi…
+    ## $ cooling_room                     <chr> "NO", "NO", "NO", "NO", "NO", "NO", "…
+    ## $ no_barrier_free_accessible_units <dbl> 2, 0, 0, 42, 0, NA, 14, 0, 0, 1, 25, …
+
+``` r
+apt_buildings %>% head %>% collect %>% lapply(typeof) %>% unlist
+```
+
+    ##                               id                 air_conditioning 
+    ##                         "double"                      "character" 
+    ##                        amenities                        balconies 
+    ##                      "character"                      "character" 
+    ##   barrier_free_accessibilty_entr                     bike_parking 
+    ##                      "character"                      "character" 
+    ##             exterior_fire_escape                       fire_alarm 
+    ##                      "character"                      "character" 
+    ##                   garbage_chutes                     heating_type 
+    ##                      "character"                      "character" 
+    ##                         intercom                     laundry_room 
+    ##                      "character"                      "character" 
+    ##           locker_or_storage_room                  no_of_elevators 
+    ##                      "character"                         "double" 
+    ##                     parking_type                     pets_allowed 
+    ##                      "character"                      "character" 
+    ##     prop_management_company_name                    property_type 
+    ##                      "character"                      "character" 
+    ##                              rsn              separate_gas_meters 
+    ##                         "double"                      "character" 
+    ##            separate_hydro_meters            separate_water_meters 
+    ##                      "character"                      "character" 
+    ##                     site_address                 sprinkler_system 
+    ##                      "character"                      "character" 
+    ##                  visitor_parking                             ward 
+    ##                      "character"                      "character" 
+    ##                      window_type                       year_built 
+    ##                      "character"                         "double" 
+    ##                  year_registered                    no_of_storeys 
+    ##                         "double"                         "double" 
+    ##                  emergency_power             non-smoking_building 
+    ##                      "character"                      "character" 
+    ##                      no_of_units  no_of_accessible_parking_spaces 
+    ##                         "double"                         "double" 
+    ##             facilities_available                     cooling_room 
+    ##                      "character"                      "character" 
+    ## no_barrier_free_accessible_units 
+    ##                         "double"
 
 <!----------------------------------------------------------------------------->
 
@@ -193,6 +430,94 @@ interested in, let’s narrow it down to 2. What lead you to choose these
 in your explanation.
 
 <!-------------------------- Start your work below ---------------------------->
+
+**Answer**: I decide to choose `steam_games` and `apt_buildings` since I
+have knowledge and interest in these two fields. I don’t choose
+`cancer_sample` and `vancouver_trees` since they require decent
+knowledge about medical or forestry to do a robust analysis.  
+
+For `steam_games`, I am curious about how the gaming industries
+developed in the past years by analyzing relationships between
+release_date and prices/requirements/reviews/developer/etc.
+
+``` r
+glimpse(steam_games)
+```
+
+    ## Rows: 40,833
+    ## Columns: 21
+    ## $ id                       <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14…
+    ## $ url                      <chr> "https://store.steampowered.com/app/379720/DO…
+    ## $ types                    <chr> "app", "app", "app", "app", "app", "bundle", …
+    ## $ name                     <chr> "DOOM", "PLAYERUNKNOWN'S BATTLEGROUNDS", "BAT…
+    ## $ desc_snippet             <chr> "Now includes all three premium DLC packs (Un…
+    ## $ recent_reviews           <chr> "Very Positive,(554),- 89% of the 554 user re…
+    ## $ all_reviews              <chr> "Very Positive,(42,550),- 92% of the 42,550 u…
+    ## $ release_date             <chr> "May 12, 2016", "Dec 21, 2017", "Apr 24, 2018…
+    ## $ developer                <chr> "id Software", "PUBG Corporation", "Harebrain…
+    ## $ publisher                <chr> "Bethesda Softworks,Bethesda Softworks", "PUB…
+    ## $ popular_tags             <chr> "FPS,Gore,Action,Demons,Shooter,First-Person,…
+    ## $ game_details             <chr> "Single-player,Multi-player,Co-op,Steam Achie…
+    ## $ languages                <chr> "English,French,Italian,German,Spanish - Spai…
+    ## $ achievements             <dbl> 54, 37, 128, NA, NA, NA, 51, 55, 34, 43, 72, …
+    ## $ genre                    <chr> "Action", "Action,Adventure,Massively Multipl…
+    ## $ game_description         <chr> "About This Game Developed by id software, th…
+    ## $ mature_content           <chr> NA, "Mature Content Description  The develope…
+    ## $ minimum_requirements     <chr> "Minimum:,OS:,Windows 7/8.1/10 (64-bit versio…
+    ## $ recommended_requirements <chr> "Recommended:,OS:,Windows 7/8.1/10 (64-bit ve…
+    ## $ original_price           <dbl> 19.99, 29.99, 39.99, 44.99, 0.00, NA, 59.99, …
+    ## $ discount_price           <dbl> 14.99, NA, NA, NA, NA, 35.18, 70.42, 17.58, N…
+
+For `apt_buildings`, I would like to know the relationship between
+facilities (e.g., air_conditioning, heating, and ward, etc.) and
+year_built. Since it has the most number of columns (37) among the
+datasets, there will be many aspects/directions I can conduct analysis
+on.
+
+``` r
+glimpse(apt_buildings)
+```
+
+    ## Rows: 3,455
+    ## Columns: 37
+    ## $ id                               <dbl> 10359, 10360, 10361, 10362, 10363, 10…
+    ## $ air_conditioning                 <chr> "NONE", "NONE", "NONE", "NONE", "NONE…
+    ## $ amenities                        <chr> "Outdoor rec facilities", "Outdoor po…
+    ## $ balconies                        <chr> "YES", "YES", "YES", "YES", "NO", "NO…
+    ## $ barrier_free_accessibilty_entr   <chr> "YES", "NO", "NO", "YES", "NO", "NO",…
+    ## $ bike_parking                     <chr> "0 indoor parking spots and 10 outdoo…
+    ## $ exterior_fire_escape             <chr> "NO", "NO", "NO", "YES", "NO", NA, "N…
+    ## $ fire_alarm                       <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ garbage_chutes                   <chr> "YES", "YES", "NO", "NO", "NO", "NO",…
+    ## $ heating_type                     <chr> "HOT WATER", "HOT WATER", "HOT WATER"…
+    ## $ intercom                         <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ laundry_room                     <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ locker_or_storage_room           <chr> "NO", "YES", "YES", "YES", "NO", "YES…
+    ## $ no_of_elevators                  <dbl> 3, 3, 0, 1, 0, 0, 0, 2, 4, 2, 0, 2, 2…
+    ## $ parking_type                     <chr> "Underground Garage , Garage accessib…
+    ## $ pets_allowed                     <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ prop_management_company_name     <chr> NA, "SCHICKEDANZ BROS. PROPERTIES", N…
+    ## $ property_type                    <chr> "PRIVATE", "PRIVATE", "PRIVATE", "PRI…
+    ## $ rsn                              <dbl> 4154812, 4154815, 4155295, 4155309, 4…
+    ## $ separate_gas_meters              <chr> "NO", "NO", "NO", "NO", "NO", "NO", "…
+    ## $ separate_hydro_meters            <chr> "YES", "YES", "YES", "YES", "YES", "Y…
+    ## $ separate_water_meters            <chr> "NO", "NO", "NO", "NO", "NO", "NO", "…
+    ## $ site_address                     <chr> "65  FOREST MANOR RD", "70  CLIPPER R…
+    ## $ sprinkler_system                 <chr> "YES", "YES", "NO", "YES", "NO", "NO"…
+    ## $ visitor_parking                  <chr> "PAID", "FREE", "UNAVAILABLE", "UNAVA…
+    ## $ ward                             <chr> "17", "17", "03", "03", "02", "02", "…
+    ## $ window_type                      <chr> "DOUBLE PANE", "DOUBLE PANE", "DOUBLE…
+    ## $ year_built                       <dbl> 1967, 1970, 1927, 1959, 1943, 1952, 1…
+    ## $ year_registered                  <dbl> 2017, 2017, 2017, 2017, 2017, NA, 201…
+    ## $ no_of_storeys                    <dbl> 17, 14, 4, 5, 4, 4, 4, 7, 32, 4, 4, 7…
+    ## $ emergency_power                  <chr> "NO", "YES", "NO", "NO", "NO", "NO", …
+    ## $ `non-smoking_building`           <chr> "YES", "NO", "YES", "YES", "YES", "NO…
+    ## $ no_of_units                      <dbl> 218, 206, 34, 42, 25, 34, 14, 105, 57…
+    ## $ no_of_accessible_parking_spaces  <dbl> 8, 10, 20, 42, 12, 0, 5, 1, 1, 6, 12,…
+    ## $ facilities_available             <chr> "Recycling bins", "Green Bin / Organi…
+    ## $ cooling_room                     <chr> "NO", "NO", "NO", "NO", "NO", "NO", "…
+    ## $ no_barrier_free_accessible_units <dbl> 2, 0, 0, 42, 0, NA, 14, 0, 0, 1, 25, …
+
 <!----------------------------------------------------------------------------->
 
 1.4 Time for the final decision! Going back to the beginning, it’s
@@ -204,6 +529,16 @@ them down below, and make your final choice based on what seems more
 interesting to you!
 
 <!-------------------------- Start your work below ---------------------------->
+
+-   `steam_games`: What variables affect the reviews of game?
+-   `cancer_sample`: What variables affect the diagnosis of cancer?
+-   `vancouver_trees`: What variables affect the diameter of tree?
+-   `apt_buildings`: How types of facilities changed by year of
+    construction?
+
+**Final decision**: `steam_games`  
+I am curious about how the gaming industries changed in the past years
+by analyzing relationships between the variables.
 <!----------------------------------------------------------------------------->
 
 # Important note
@@ -242,10 +577,69 @@ tasks may make sense for your data - which is why you should only answer
 *4*. Use *dplyr* and *ggplot*.
 
 1.  Plot the distribution of a numeric variable.
+
+``` r
+rs_prices <- steam_games[!is.na(steam_games$original_price) & !is.na(steam_games$discount_price) & steam_games$original_price > 0 & grepl("Rockstar", steam_games$publisher), ] %>% select(name, original_price, discount_price)
+rs_prices <- rs_prices %>% pivot_longer(-name, names_to="variable", values_to="value")
+
+ggplot(rs_prices, aes(x = name,y = value)) + 
+  geom_bar(aes(fill = variable),stat = "identity",position = "dodge") + coord_flip()
+```
+
+![](Milestone_1_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
 2.  Create a new variable based on other variables in your data (only if
     it makes sense)
+
+``` r
+substrRight <- function(x, n){
+  substr(x, nchar(x)-n+1, nchar(x))
+}
+steam_games_with_release_year <- steam_games %>% mutate(release_year=substrRight(release_date, 4))
+glimpse(steam_games_with_release_year)
+```
+
+    ## Rows: 40,833
+    ## Columns: 22
+    ## $ id                       <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14…
+    ## $ url                      <chr> "https://store.steampowered.com/app/379720/DO…
+    ## $ types                    <chr> "app", "app", "app", "app", "app", "bundle", …
+    ## $ name                     <chr> "DOOM", "PLAYERUNKNOWN'S BATTLEGROUNDS", "BAT…
+    ## $ desc_snippet             <chr> "Now includes all three premium DLC packs (Un…
+    ## $ recent_reviews           <chr> "Very Positive,(554),- 89% of the 554 user re…
+    ## $ all_reviews              <chr> "Very Positive,(42,550),- 92% of the 42,550 u…
+    ## $ release_date             <chr> "May 12, 2016", "Dec 21, 2017", "Apr 24, 2018…
+    ## $ developer                <chr> "id Software", "PUBG Corporation", "Harebrain…
+    ## $ publisher                <chr> "Bethesda Softworks,Bethesda Softworks", "PUB…
+    ## $ popular_tags             <chr> "FPS,Gore,Action,Demons,Shooter,First-Person,…
+    ## $ game_details             <chr> "Single-player,Multi-player,Co-op,Steam Achie…
+    ## $ languages                <chr> "English,French,Italian,German,Spanish - Spai…
+    ## $ achievements             <dbl> 54, 37, 128, NA, NA, NA, 51, 55, 34, 43, 72, …
+    ## $ genre                    <chr> "Action", "Action,Adventure,Massively Multipl…
+    ## $ game_description         <chr> "About This Game Developed by id software, th…
+    ## $ mature_content           <chr> NA, "Mature Content Description  The develope…
+    ## $ minimum_requirements     <chr> "Minimum:,OS:,Windows 7/8.1/10 (64-bit versio…
+    ## $ recommended_requirements <chr> "Recommended:,OS:,Windows 7/8.1/10 (64-bit ve…
+    ## $ original_price           <dbl> 19.99, 29.99, 39.99, 44.99, 0.00, NA, 59.99, …
+    ## $ discount_price           <dbl> 14.99, NA, NA, NA, NA, 35.18, 70.42, 17.58, N…
+    ## $ release_year             <chr> "2016", "2017", "2018", "2018", "2003", "NaN"…
+
 3.  Investigate how many missing values there are per variable. Can you
     find a way to plot this?
+
+``` r
+num_na <- cbind(Variable = "Value", 
+                steam_games %>% summarise_all(~sum(is.na(.))))
+num_na <- pivot_longer(num_na, -Variable) %>%
+  pivot_wider(name, names_from="Variable", values_from="value") %>%
+  rename(Variable=name)
+num_na_plot <- ggplot(num_na, aes(x=Variable, y=Value)) +
+   geom_col() + coord_flip()
+num_na_plot
+```
+
+![](Milestone_1_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
 4.  Explore the relationship between 2 variables in a plot.
 5.  Filter observations in your data according to your own criteria.
     Think of what you’d like to explore - again, if this was the
@@ -256,6 +650,28 @@ tasks may make sense for your data - which is why you should only answer
     if you wish!
 7.  Make a new tibble with a subset of your data, with variables and
     observations that you are interested in exploring.
+
+``` r
+# using our new dataset made above: steam_games_with_release_year
+steam_games_genre_by_year <- as_tibble(steam_games_with_release_year %>% select(id, name, genre, release_year))
+steam_games_genre_by_year
+```
+
+    ## # A tibble: 40,833 × 4
+    ##       id name                                       genre                relea…¹
+    ##    <dbl> <chr>                                      <chr>                <chr>  
+    ##  1     1 DOOM                                       Action               2016   
+    ##  2     2 PLAYERUNKNOWN'S BATTLEGROUNDS              Action,Adventure,Ma… 2017   
+    ##  3     3 BATTLETECH                                 Action,Adventure,St… 2018   
+    ##  4     4 DayZ                                       Action,Adventure,Ma… 2018   
+    ##  5     5 EVE Online                                 Action,Free to Play… 2003   
+    ##  6     6 Grand Theft Auto V: Premium Online Edition Action,Adventure     NaN    
+    ##  7     7 Devil May Cry 5                            Action               2019   
+    ##  8     8 Human: Fall Flat                           Adventure,Indie      2016   
+    ##  9     9 They Are Billions                          Strategy,Early Acce… 2017   
+    ## 10    10 Warhammer: Chaosbane                       Action,Adventure,RPG 2019   
+    ## # … with 40,823 more rows, and abbreviated variable name ¹​release_year
+
 8.  Use a density plot to explore any of your variables (that are
     suitable for this type of plot).
 
@@ -296,6 +712,34 @@ task that needs a categorical variable.). Comment on why each task helps
 (or doesn’t!) answer the corresponding research question.
 
 Ensure that the output of each operation is printed!
+
+1.  Create a categorical variable with 3 or more groups from an existing
+    numerical variable. You can use this new variable in the other
+    tasks! *An example: original price into cheap, medium, expensive*
+    –\> graph: Create 3 histograms out of summarized variables, with
+    each histogram having different sized bins. Pick the “best” one and
+    explain why it is the best.
+
+2.  Create a categorical variable with 3 or more groups from an existing
+    numerical variable. You can use this new variable in the other
+    tasks! *An example: release year into old, early, recent/modern?
+    search it up for gaming review* –\> graph: Create 3 histograms out
+    of summarized variables, with each histogram having different sized
+    bins. Pick the “best” one and explain why it is the best.
+
+3.  Compute the number of observations for at least one of your
+    categorical variables. Do not use the function `table()`! *compute
+    number of games for popular genres 2012-2022* –\> graph: Create a
+    graph out of summarized variables that has at least two geom layers.
+    *look at worksheet a03 question 2.6*
+
+4.  Compute the number of observations for at least one of your
+    categorical variables. Do not use the function `table()`! *compute
+    number of games for popular languages (english, chinese, etc)
+    2012-2022* since we can see the new games support chinese may
+    increase by year –\> graph: Create a graph out of summarized
+    variables that has at least two geom layers. *look at worksheet a03
+    question 2.6*
 
 **Summarizing:**
 
