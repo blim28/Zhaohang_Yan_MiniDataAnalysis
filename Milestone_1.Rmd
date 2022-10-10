@@ -170,56 +170,83 @@ If we rewind and go back to the learning objectives, you'll see that by the end 
 
 2.1 Complete *4 out of the following 8 exercises* to dive deeper into your data. All datasets are different and therefore, not all of these tasks may make sense for your data - which is why you should only answer *4*. Use *dplyr* and *ggplot*.
 
-1.  Plot the distribution of a numeric variable.
-```{r}
-rs_prices <- steam_games[!is.na(steam_games$original_price) & !is.na(steam_games$discount_price) & steam_games$original_price > 0 & grepl("Rockstar", steam_games$publisher), ] %>% select(name, original_price, discount_price)
-rs_prices <- rs_prices %>% pivot_longer(-name, names_to="variable", values_to="value")
-
-ggplot(rs_prices, aes(x = name,y = value)) + 
-  geom_bar(aes(fill = variable),stat = "identity",position = "dodge") + coord_flip()
-```
-
-2.  Create a new variable based on other variables in your data (only if it makes sense)
-```{r}
-substrRight <- function(x, n){
-  substr(x, nchar(x)-n+1, nchar(x))
-}
-steam_games_with_release_year <- steam_games %>% mutate(release_year=substrRight(release_date, 4))
-glimpse(steam_games_with_release_year)
-```
-
-3.  Investigate how many missing values there are per variable. Can you find a way to plot this?
-```{r}
-num_na <- cbind(Variable = "Value", 
-                steam_games %>% summarise_all(~sum(is.na(.))))
-num_na <- pivot_longer(num_na, -Variable) %>%
-  pivot_wider(name, names_from="Variable", values_from="value") %>%
-  rename(Variable=name)
-num_na_plot <- ggplot(num_na, aes(x=Variable, y=Value)) +
-   geom_col() + coord_flip()
-num_na_plot
-```
-
-4.  Explore the relationship between 2 variables in a plot.
-5.  Filter observations in your data according to your own criteria. Think of what you'd like to explore - again, if this was the `titanic` dataset, I may want to narrow my search down to passengers born in a particular year...
-6.  Use a boxplot to look at the frequency of different observations within a single variable. You can do this for more than one variable if you wish!
-7.  Make a new tibble with a subset of your data, with variables and observations that you are interested in exploring.
-```{r}
-# using our new dataset made above: steam_games_with_release_year
-steam_games_genre_by_year <- as_tibble(steam_games_with_release_year %>% select(id, name, genre, release_year))
-steam_games_genre_by_year
-```
-8.  Use a density plot to explore any of your variables (that are suitable for this type of plot).
+**1.  Plot the distribution of a numeric variable.**\
+**2.  Create a new variable based on other variables in your data (only if it makes sense)**\
+**3.  Investigate how many missing values there are per variable. Can you find a way to plot this?**\
+4.  Explore the relationship between 2 variables in a plot.\
+5.  Filter observations in your data according to your own criteria. Think of what you'd like to explore - again, if this was the `titanic` dataset, I may want to narrow my search down to passengers born in a particular year...\
+6.  Use a boxplot to look at the frequency of different observations within a single variable. You can do this for more than one variable if you wish!\
+**7.  Make a new tibble with a subset of your data, with variables and observations that you are interested in exploring.**\
+8.  Use a density plot to explore any of your variables (that are suitable for this type of plot).\
 
 2.2 For each of the 4 exercises that you complete, provide a *brief explanation* of why you chose that exercise in relation to your data (in other words, why does it make sense to do that?), and sufficient comments for a reader to understand your reasoning and code.
 
 <!-------------------------- Start your work below ---------------------------->
+1.  Plot the distribution of a numeric variable.
+```{r}
+rs_prices <- steam_games[!is.na(steam_games$original_price) 
+                         & !is.na(steam_games$discount_price) 
+                         & steam_games$original_price > 0 
+                         & grepl("Rockstar", steam_games$publisher), ] %>% 
+             select(name, original_price, discount_price)
+
+rs_prices <- rs_prices %>% pivot_longer(-name, names_to="variable", values_to="value")
+
+ggplot(rs_prices, aes(x = name,y = value)) + 
+    geom_bar(aes(fill = variable),stat = "identity",position = "dodge") + coord_flip()
+```
+
+In this exercise, I plot the distribution of numeric variables `discount_price` and `original_price` for games published by Rockstar Games. I chose this exercise since I am curious about what the discount on Rockstar's games looks like. I found it interesting that the popular games usually have discount prices higher than the original prices.
+
+---
+
+2.  Create a new variable based on other variables in your data (only if it makes sense)
+```{r}
+substrRight <- function(x, n) { substr(x, nchar(x)-n+1, nchar(x)) }
+steam_games_with_release_year <- steam_games %>% mutate(release_year=substrRight(release_date, 4))
+glimpse(steam_games_with_release_year)
+```
+
+In this exercise, I create a new variable `release_year` that contains the year of game release by extracting the year from the variable `release_date` in the dataset. I could use the `release_year` variable to summarize my data by *year* later in Task 4.
+
+---
+
+3.  Investigate how many missing values there are per variable. Can you find a way to plot this?
+```{r}
+num_na <- cbind(Variable = "Value", steam_games %>% summarise_all(~sum(is.na(.))))
+num_na <- pivot_longer(num_na, -Variable) %>%
+          pivot_wider(name, names_from="Variable", values_from="value") %>%
+          rename(Variable=name)
+num_na_plot <- ggplot(num_na, aes(x=Variable, y=Value)) +
+               geom_col() + coord_flip()
+print(num_na_plot)
+```
+
+In this exercise, I plot the number of missing values in each variable. It is important since I need to know which variables are worth analyzing. If there are many missing values, the variable is less worth analyzing since there is not enough data to study its relationship with other variables. From the graph, we see that `recent_reviews`, `mature_content`, and `achievements` have the most missing values. We can avoid studying their relationship with other variables.
+
+---
+
+7.  Make a new tibble with a subset of your data, with variables and observations that you are interested in exploring.
+```{r}
+# using our new dataset made above: steam_games_with_release_year
+steam_games_genre_by_year <- as_tibble(steam_games_with_release_year %>% select(id, name, genre, release_year))
+print(steam_games_genre_by_year)
+```
+
+In this exercise, I made a new tibble with a subset of `steam_games` with variables `id`, `name`, `genre`, `release_year` (obtained in exercise 2 above). I will use this tibble in task 4 to explore the genre distribution in each year so that I can summarize the trend per year.
 
 <!----------------------------------------------------------------------------->
 
 # Task 3: Write your research questions (5 points)
 
 So far, you have chosen a dataset and gotten familiar with it through exploring the data. Now it's time to figure out 4 research questions that you would like to answer with your data! Write the 4 questions and any additional comments at the end of this deliverable. These questions are not necessarily set in stone - TAs will review them and give you feedback; therefore, you may choose to pursue them as they are for the rest of the project, or make modifications!
+
+### Research Questions:
+
+1. What is the overall distribution of games by price categories (e.g., cheap, medium, expensive)?
+2. What is the overall distribution of games by release year categories (e.g., old, early, recent, new)?
+3. What are the popular genres each year during *2012 - 2022*?
+4. What are the supported languages each year during *2012 - 2022*?
 
 <!--- *****START HERE***** --->
 

@@ -21,7 +21,7 @@ library(tidyverse)
 ```
 
     ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-    ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.5 
+    ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
     ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
     ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
     ## ✔ readr   2.1.3      ✔ forcats 0.5.2 
@@ -40,19 +40,19 @@ library(tidyverse)
 
 ## For Both Milestones
 
--   Each milestone is worth 45 points. The number of points allocated to
-    each task will be annotated within each deliverable. Tasks that are
-    more challenging will often be allocated more points.
+- Each milestone is worth 45 points. The number of points allocated to
+  each task will be annotated within each deliverable. Tasks that are
+  more challenging will often be allocated more points.
 
--   10 points will be allocated to the reproducibility, cleanliness, and
-    coherence of the overall analysis. While the two milestones will be
-    submitted as independent deliverables, the analysis itself is a
-    continuum - think of it as two chapters to a story. Each chapter, or
-    in this case, portion of your analysis, should be easily followed
-    through by someone unfamiliar with the content.
-    [Here](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/)
-    is a good resource for what constitutes “good code”. Learning good
-    coding practices early in your career will save you hassle later on!
+- 10 points will be allocated to the reproducibility, cleanliness, and
+  coherence of the overall analysis. While the two milestones will be
+  submitted as independent deliverables, the analysis itself is a
+  continuum - think of it as two chapters to a story. Each chapter, or
+  in this case, portion of your analysis, should be easily followed
+  through by someone unfamiliar with the content.
+  [Here](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/)
+  is a good resource for what constitutes “good code”. Learning good
+  coding practices early in your career will save you hassle later on!
 
 ## For Milestone 1
 
@@ -76,11 +76,11 @@ for tagging your release on Github.
 
 By the end of this milestone, you should:
 
--   Become familiar with your dataset of choosing
--   Select 4 questions that you would like to answer with your data
--   Generate a reproducible and clear report using R Markdown
--   Become familiar with manipulating and summarizing your data in
-    tibbles using `dplyr`, with a research question in mind.
+- Become familiar with your dataset of choosing
+- Select 4 questions that you would like to answer with your data
+- Generate a reproducible and clear report using R Markdown
+- Become familiar with manipulating and summarizing your data in tibbles
+  using `dplyr`, with a research question in mind.
 
 # Task 1: Choose your favorite dataset (10 points)
 
@@ -88,42 +88,42 @@ The `datateachr` package by Hayley Boyce and Jordan Bourak currently
 composed of 7 semi-tidy datasets for educational purposes. Here is a
 brief description of each dataset:
 
--   *apt_buildings*: Acquired courtesy of The City of Toronto’s Open
-    Data Portal. It currently has 3455 rows and 37 columns.
+- *apt_buildings*: Acquired courtesy of The City of Toronto’s Open Data
+  Portal. It currently has 3455 rows and 37 columns.
 
--   *building_permits*: Acquired courtesy of The City of Vancouver’s
-    Open Data Portal. It currently has 20680 rows and 14 columns.
+- *building_permits*: Acquired courtesy of The City of Vancouver’s Open
+  Data Portal. It currently has 20680 rows and 14 columns.
 
--   *cancer_sample*: Acquired courtesy of UCI Machine Learning
-    Repository. It currently has 569 rows and 32 columns.
+- *cancer_sample*: Acquired courtesy of UCI Machine Learning Repository.
+  It currently has 569 rows and 32 columns.
 
--   *flow_sample*: Acquired courtesy of The Government of Canada’s
-    Historical Hydrometric Database. It currently has 218 rows and 7
-    columns.
+- *flow_sample*: Acquired courtesy of The Government of Canada’s
+  Historical Hydrometric Database. It currently has 218 rows and 7
+  columns.
 
--   *parking_meters*: Acquired courtesy of The City of Vancouver’s Open
-    Data Portal. It currently has 10032 rows and 22 columns.
+- *parking_meters*: Acquired courtesy of The City of Vancouver’s Open
+  Data Portal. It currently has 10032 rows and 22 columns.
 
--   *steam_games*: Acquired courtesy of Kaggle. It currently has 40833
-    rows and 21 columns.
+- *steam_games*: Acquired courtesy of Kaggle. It currently has 40833
+  rows and 21 columns.
 
--   *vancouver_trees*: Acquired courtesy of The City of Vancouver’s Open
-    Data Portal. It currently has 146611 rows and 20 columns.
+- *vancouver_trees*: Acquired courtesy of The City of Vancouver’s Open
+  Data Portal. It currently has 146611 rows and 20 columns.
 
 **Things to keep in mind**
 
--   We hope that this project will serve as practice for carrying our
-    your own *independent* data analysis. Remember to comment your code,
-    be explicit about what you are doing, and write notes in this
-    markdown document when you feel that context is required. As you
-    advance in the project, prompts and hints to do this will be
-    diminished - it’ll be up to you!
+- We hope that this project will serve as practice for carrying our your
+  own *independent* data analysis. Remember to comment your code, be
+  explicit about what you are doing, and write notes in this markdown
+  document when you feel that context is required. As you advance in the
+  project, prompts and hints to do this will be diminished - it’ll be up
+  to you!
 
--   Before choosing a dataset, you should always keep in mind **your
-    goal**, or in other ways, *what you wish to achieve with this data*.
-    This mini data-analysis project focuses on *data wrangling*,
-    *tidying*, and *visualization*. In short, it’s a way for you to get
-    your feet wet with exploring data on your own.
+- Before choosing a dataset, you should always keep in mind **your
+  goal**, or in other ways, *what you wish to achieve with this data*.
+  This mini data-analysis project focuses on *data wrangling*,
+  *tidying*, and *visualization*. In short, it’s a way for you to get
+  your feet wet with exploring data on your own.
 
 And that is exactly the first thing that you will do!
 
@@ -162,9 +162,9 @@ comments outside of the code chunk?
 
 ------------------------------------------------------------------------
 
--   **Attribute 1**: Number of Rows  
--   **Attribute 2**: Number of Variables  
--   **Attribute 3**: List of all variables and types of variables  
+- **Attribute 1**: Number of Rows  
+- **Attribute 2**: Number of Variables  
+- **Attribute 3**: List of all variables and types of variables  
 
 Attributes of `steam_games` dataset:
 
@@ -530,11 +530,11 @@ interesting to you!
 
 <!-------------------------- Start your work below ---------------------------->
 
--   `steam_games`: What variables affect the reviews of game?
--   `cancer_sample`: What variables affect the diagnosis of cancer?
--   `vancouver_trees`: What variables affect the diameter of tree?
--   `apt_buildings`: How types of facilities changed by year of
-    construction?
+- `steam_games`: What variables affect the reviews of game?
+- `cancer_sample`: What variables affect the diagnosis of cancer?
+- `vancouver_trees`: What variables affect the diameter of tree?
+- `apt_buildings`: How types of facilities changed by year of
+  construction?
 
 **Final decision**: `steam_games`  
 I am curious about how the gaming industries changed in the past years
@@ -576,25 +576,61 @@ your data. All datasets are different and therefore, not all of these
 tasks may make sense for your data - which is why you should only answer
 *4*. Use *dplyr* and *ggplot*.
 
+**1. Plot the distribution of a numeric variable.**  
+**2. Create a new variable based on other variables in your data (only
+if it makes sense)**  
+**3. Investigate how many missing values there are per variable. Can you
+find a way to plot this?**  
+4. Explore the relationship between 2 variables in a plot.  
+5. Filter observations in your data according to your own criteria.
+Think of what you’d like to explore - again, if this was the `titanic`
+dataset, I may want to narrow my search down to passengers born in a
+particular year…  
+6. Use a boxplot to look at the frequency of different observations
+within a single variable. You can do this for more than one variable if
+you wish!  
+**7. Make a new tibble with a subset of your data, with variables and
+observations that you are interested in exploring.**  
+8. Use a density plot to explore any of your variables (that are
+suitable for this type of plot).  
+
+2.2 For each of the 4 exercises that you complete, provide a *brief
+explanation* of why you chose that exercise in relation to your data (in
+other words, why does it make sense to do that?), and sufficient
+comments for a reader to understand your reasoning and code.
+
+<!-------------------------- Start your work below ---------------------------->
+
 1.  Plot the distribution of a numeric variable.
 
 ``` r
-rs_prices <- steam_games[!is.na(steam_games$original_price) & !is.na(steam_games$discount_price) & steam_games$original_price > 0 & grepl("Rockstar", steam_games$publisher), ] %>% select(name, original_price, discount_price)
+rs_prices <- steam_games[!is.na(steam_games$original_price) 
+                         & !is.na(steam_games$discount_price) 
+                         & steam_games$original_price > 0 
+                         & grepl("Rockstar", steam_games$publisher), ] %>% 
+             select(name, original_price, discount_price)
+
 rs_prices <- rs_prices %>% pivot_longer(-name, names_to="variable", values_to="value")
 
 ggplot(rs_prices, aes(x = name,y = value)) + 
-  geom_bar(aes(fill = variable),stat = "identity",position = "dodge") + coord_flip()
+    geom_bar(aes(fill = variable),stat = "identity",position = "dodge") + coord_flip()
 ```
 
 ![](Milestone_1_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+In this exercise, I plot the distribution of numeric variables
+`discount_price` and `original_price` for games published by Rockstar
+Games. I chose this exercise since I am curious about what the discount
+on Rockstar’s games looks like. I found it interesting that the popular
+games usually have discount prices higher than the original prices.
+
+------------------------------------------------------------------------
 
 2.  Create a new variable based on other variables in your data (only if
     it makes sense)
 
 ``` r
-substrRight <- function(x, n){
-  substr(x, nchar(x)-n+1, nchar(x))
-}
+substrRight <- function(x, n) { substr(x, nchar(x)-n+1, nchar(x)) }
 steam_games_with_release_year <- steam_games %>% mutate(release_year=substrRight(release_date, 4))
 glimpse(steam_games_with_release_year)
 ```
@@ -624,37 +660,45 @@ glimpse(steam_games_with_release_year)
     ## $ discount_price           <dbl> 14.99, NA, NA, NA, NA, 35.18, 70.42, 17.58, N…
     ## $ release_year             <chr> "2016", "2017", "2018", "2018", "2003", "NaN"…
 
+In this exercise, I create a new variable `release_year` that contains
+the year of game release by extracting the year from the variable
+`release_date` in the dataset. I could use the `release_year` variable
+to summarize my data by *year* later in Task 4.
+
+------------------------------------------------------------------------
+
 3.  Investigate how many missing values there are per variable. Can you
     find a way to plot this?
 
 ``` r
-num_na <- cbind(Variable = "Value", 
-                steam_games %>% summarise_all(~sum(is.na(.))))
+num_na <- cbind(Variable = "Value", steam_games %>% summarise_all(~sum(is.na(.))))
 num_na <- pivot_longer(num_na, -Variable) %>%
-  pivot_wider(name, names_from="Variable", values_from="value") %>%
-  rename(Variable=name)
+          pivot_wider(name, names_from="Variable", values_from="value") %>%
+          rename(Variable=name)
 num_na_plot <- ggplot(num_na, aes(x=Variable, y=Value)) +
-   geom_col() + coord_flip()
-num_na_plot
+               geom_col() + coord_flip()
+print(num_na_plot)
 ```
 
 ![](Milestone_1_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-4.  Explore the relationship between 2 variables in a plot.
-5.  Filter observations in your data according to your own criteria.
-    Think of what you’d like to explore - again, if this was the
-    `titanic` dataset, I may want to narrow my search down to passengers
-    born in a particular year…
-6.  Use a boxplot to look at the frequency of different observations
-    within a single variable. You can do this for more than one variable
-    if you wish!
+In this exercise, I plot the number of missing values in each variable.
+It is important since I need to know which variables are worth
+analyzing. If there are many missing values, the variable is less worth
+analyzing since there is not enough data to study its relationship with
+other variables. From the graph, we see that `recent_reviews`,
+`mature_content`, and `achievements` have the most missing values. We
+can avoid studying their relationship with other variables.
+
+------------------------------------------------------------------------
+
 7.  Make a new tibble with a subset of your data, with variables and
     observations that you are interested in exploring.
 
 ``` r
 # using our new dataset made above: steam_games_with_release_year
 steam_games_genre_by_year <- as_tibble(steam_games_with_release_year %>% select(id, name, genre, release_year))
-steam_games_genre_by_year
+print(steam_games_genre_by_year)
 ```
 
     ## # A tibble: 40,833 × 4
@@ -672,15 +716,11 @@ steam_games_genre_by_year
     ## 10    10 Warhammer: Chaosbane                       Action,Adventure,RPG 2019   
     ## # … with 40,823 more rows, and abbreviated variable name ¹​release_year
 
-8.  Use a density plot to explore any of your variables (that are
-    suitable for this type of plot).
+In this exercise, I made a new tibble with a subset of `steam_games`
+with variables `id`, `name`, `genre`, `release_year` (obtained in
+exercise 2 above). I will use this tibble in task 4 to explore the genre
+distribution in each year so that I can summarize the trend per year.
 
-2.2 For each of the 4 exercises that you complete, provide a *brief
-explanation* of why you chose that exercise in relation to your data (in
-other words, why does it make sense to do that?), and sufficient
-comments for a reader to understand your reasoning and code.
-
-<!-------------------------- Start your work below ---------------------------->
 <!----------------------------------------------------------------------------->
 
 # Task 3: Write your research questions (5 points)
@@ -692,6 +732,15 @@ any additional comments at the end of this deliverable. These questions
 are not necessarily set in stone - TAs will review them and give you
 feedback; therefore, you may choose to pursue them as they are for the
 rest of the project, or make modifications!
+
+### Research Questions:
+
+1.  What is the overall distribution of games by price categories (e.g.,
+    cheap, medium, expensive)?
+2.  What is the overall distribution of games by release year categories
+    (e.g., old, early, recent, new)?
+3.  What are the popular genres each year during *2012 - 2022*?
+4.  What are the supported languages each year during *2012 - 2022*?
 
 <!--- *****START HERE***** --->
 
