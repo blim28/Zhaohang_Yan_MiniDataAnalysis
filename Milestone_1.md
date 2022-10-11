@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 Mini Data-Analysis Deliverable 1
 ================
 
@@ -612,8 +617,9 @@ rs_prices <- steam_games[!is.na(steam_games$original_price)
 
 rs_prices <- rs_prices %>% pivot_longer(-name, names_to="variable", values_to="value")
 
-ggplot(rs_prices, aes(x = name,y = value)) + 
+rs_prices_plot <- ggplot(rs_prices, aes(x = name,y = value)) + 
     geom_bar(aes(fill = variable),stat = "identity",position = "dodge") + coord_flip()
+print(rs_prices_plot)
 ```
 
 ![](Milestone_1_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
@@ -631,7 +637,12 @@ games usually have discount prices higher than the original prices.
 
 ``` r
 substrRight <- function(x, n) { substr(x, nchar(x)-n+1, nchar(x)) }
-steam_games_with_release_year <- steam_games %>% mutate(release_year=substrRight(release_date, 4))
+steam_games_with_release_year <- steam_games %>% mutate(release_year=as.numeric(substrRight(release_date, 4)))
+```
+
+    ## Warning in mask$eval_all_mutate(quo): NAs introduced by coercion
+
+``` r
 glimpse(steam_games_with_release_year)
 ```
 
@@ -658,7 +669,7 @@ glimpse(steam_games_with_release_year)
     ## $ recommended_requirements <chr> "Recommended:,OS:,Windows 7/8.1/10 (64-bit ve…
     ## $ original_price           <dbl> 19.99, 29.99, 39.99, 44.99, 0.00, NA, 59.99, …
     ## $ discount_price           <dbl> 14.99, NA, NA, NA, NA, 35.18, 70.42, 17.58, N…
-    ## $ release_year             <chr> "2016", "2017", "2018", "2018", "2003", "NaN"…
+    ## $ release_year             <dbl> 2016, 2017, 2018, 2018, 2003, NaN, 2019, 2016…
 
 In this exercise, I create a new variable `release_year` that contains
 the year of game release by extracting the year from the variable
@@ -703,22 +714,22 @@ print(steam_games_genre_by_year)
 
     ## # A tibble: 40,833 × 4
     ##       id name                                       genre                relea…¹
-    ##    <dbl> <chr>                                      <chr>                <chr>  
-    ##  1     1 DOOM                                       Action               2016   
-    ##  2     2 PLAYERUNKNOWN'S BATTLEGROUNDS              Action,Adventure,Ma… 2017   
-    ##  3     3 BATTLETECH                                 Action,Adventure,St… 2018   
-    ##  4     4 DayZ                                       Action,Adventure,Ma… 2018   
-    ##  5     5 EVE Online                                 Action,Free to Play… 2003   
-    ##  6     6 Grand Theft Auto V: Premium Online Edition Action,Adventure     NaN    
-    ##  7     7 Devil May Cry 5                            Action               2019   
-    ##  8     8 Human: Fall Flat                           Adventure,Indie      2016   
-    ##  9     9 They Are Billions                          Strategy,Early Acce… 2017   
-    ## 10    10 Warhammer: Chaosbane                       Action,Adventure,RPG 2019   
+    ##    <dbl> <chr>                                      <chr>                  <dbl>
+    ##  1     1 DOOM                                       Action                  2016
+    ##  2     2 PLAYERUNKNOWN'S BATTLEGROUNDS              Action,Adventure,Ma…    2017
+    ##  3     3 BATTLETECH                                 Action,Adventure,St…    2018
+    ##  4     4 DayZ                                       Action,Adventure,Ma…    2018
+    ##  5     5 EVE Online                                 Action,Free to Play…    2003
+    ##  6     6 Grand Theft Auto V: Premium Online Edition Action,Adventure         NaN
+    ##  7     7 Devil May Cry 5                            Action                  2019
+    ##  8     8 Human: Fall Flat                           Adventure,Indie         2016
+    ##  9     9 They Are Billions                          Strategy,Early Acce…    2017
+    ## 10    10 Warhammer: Chaosbane                       Action,Adventure,RPG    2019
     ## # … with 40,823 more rows, and abbreviated variable name ¹​release_year
 
 In this exercise, I made a new tibble with a subset of `steam_games`
 with variables `id`, `name`, `genre`, `release_year` (obtained in
-exercise 2 above). I will use this tibble in task 4 to explore the genre
+exercise 2 above). I may use this tibble in task 4 to explore the genre
 distribution in each year so that I can summarize the trend per year.
 
 <!----------------------------------------------------------------------------->
@@ -733,16 +744,22 @@ are not necessarily set in stone - TAs will review them and give you
 feedback; therefore, you may choose to pursue them as they are for the
 rest of the project, or make modifications!
 
+<!--- *****START HERE***** --->
+
 ### Research Questions:
 
-1.  What is the overall distribution of games by price categories (e.g.,
-    cheap, medium, expensive)?
-2.  What is the overall distribution of games by release year categories
-    (e.g., old, early, recent, new)?
-3.  What are the popular genres each year during *2012 - 2022*?
-4.  What are the supported languages each year during *2012 - 2022*?
+1.  What is the overall distribution of games by price categories and
+    the average price of each category (e.g., free, cheap, moderate,
+    expensive, luxury)?
+2.  What is the overall distribution of games by release year category
+    and the average price of each category (e.g., old, early, recent,
+    latest)?
+3.  What are the distribution of the most popular genres each year
+    during *2015 - 2019*?
+4.  What is the percentage of games that supported Chinese each year
+    during *2010 - 2019*?
 
-<!--- *****START HERE***** --->
+<!---------------------------->
 
 # Task 4: Process and summarize your data (13 points)
 
@@ -761,34 +778,6 @@ task that needs a categorical variable.). Comment on why each task helps
 (or doesn’t!) answer the corresponding research question.
 
 Ensure that the output of each operation is printed!
-
-1.  Create a categorical variable with 3 or more groups from an existing
-    numerical variable. You can use this new variable in the other
-    tasks! *An example: original price into cheap, medium, expensive*
-    –\> graph: Create 3 histograms out of summarized variables, with
-    each histogram having different sized bins. Pick the “best” one and
-    explain why it is the best.
-
-2.  Create a categorical variable with 3 or more groups from an existing
-    numerical variable. You can use this new variable in the other
-    tasks! *An example: release year into old, early, recent/modern?
-    search it up for gaming review* –\> graph: Create 3 histograms out
-    of summarized variables, with each histogram having different sized
-    bins. Pick the “best” one and explain why it is the best.
-
-3.  Compute the number of observations for at least one of your
-    categorical variables. Do not use the function `table()`! *compute
-    number of games for popular genres 2012-2022* –\> graph: Create a
-    graph out of summarized variables that has at least two geom layers.
-    *look at worksheet a03 question 2.6*
-
-4.  Compute the number of observations for at least one of your
-    categorical variables. Do not use the function `table()`! *compute
-    number of games for popular languages (english, chinese, etc)
-    2012-2022* since we can see the new games support chinese may
-    increase by year –\> graph: Create a graph out of summarized
-    variables that has at least two geom layers. *look at worksheet a03
-    question 2.6*
 
 **Summarizing:**
 
@@ -819,7 +808,229 @@ Ensure that the output of each operation is printed!
 Make sure it’s clear what research question you are doing each operation
 for!
 
+------------------------------------------------------------------------
+
 <!------------------------- Start your work below ----------------------------->
+
+1.  What is the overall distribution of games by price categories and
+    the average price of each category (e.g., free, cheap, moderate,
+    expensive, luxury)?
+
+**Summarizing Task**: 3. Create a categorical variable with 3 or more
+groups from an existing numerical variable.  
+**Graphing Task**: 5. Create a graph out of summarized variables that
+has at least two geom layers (***geom_col & geom_line & geom_text***).  
+
+``` r
+original_prices_wo_na <- steam_games[!is.na(steam_games$original_price), ] %>% 
+             select(id, name, original_price)
+steam_games_price_categorized <- original_prices_wo_na %>% mutate(price_level=cut(original_price, breaks=c(-Inf, 0, 10, 30, 60, Inf), labels=c("free", "cheap", "moderate", "expensive", "luxury")))
+summarised_price <- steam_games_price_categorized %>% 
+                    select(original_price, price_level) %>%
+                    group_by(price_level) %>%
+                    summarise(across(where(is.numeric), mean, na.rm = TRUE), n=n())
+print(summarised_price)
+```
+
+    ## # A tibble: 5 × 3
+    ##   price_level original_price     n
+    ##   <fct>                <dbl> <int>
+    ## 1 free                  0     2976
+    ## 2 cheap                 4.85 23709
+    ## 3 moderate             18.6   6762
+    ## 4 expensive            44.9   1123
+    ## 5 luxury             1749.     910
+
+``` r
+summarised_price_level <- ggplot(summarised_price) + 
+    labs(x = "Price Level", y = "Number of games") +
+    geom_col(aes(x = price_level, y = n), size = 1) +
+    geom_text(aes(x = price_level, y = n, label = n), vjust = -0.2) +
+    geom_line(aes(x = price_level, y = 13*original_price), size = 1.5, color="red", group = 1) +
+    scale_y_continuous(sec.axis = sec_axis(~./13, name = "Original Price ($)"))
+print(summarised_price_level)
+```
+
+![](Milestone_1_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+I categorized the games into 5 price levels, `free` (\$0), `cheap` (\$0
+\~ \$10\], `moderate` (\$10 \~ \$30\],`expensive` (\$30 \~ \$60\], and
+`luxury` (\>\$60). As we can see in the chart, the majority of games are
+in the `cheap` price range where the average original price is `$4.85`.
+The second largest section is the `moderate` level where the average is
+`$18.6`. Therefore, we see that most of the games on Steam are
+affordable for most people. If a game publisher wishes to release a
+game, they can base the price on `cheap` or `moderate` games.
+
+------------------------------------------------------------------------
+
+2.  What is the overall distribution of games by release year category
+    and the average price of each category (e.g., old, early, recent,
+    latest)?
+
+**Summarizing Task**: 3. Create a categorical variable with 3 or more
+groups from an existing numerical variable.  
+**Graphing Task**: 5. Create a graph out of summarized variables that
+has at least two geom layers (***geom_col & geom_line & geom_point &
+geom_text***).  
+
+``` r
+release_year_wo_na <- steam_games_with_release_year[!is.na(steam_games_with_release_year$release_year) 
+                                                    & !is.na(steam_games_with_release_year$original_price), ] %>% 
+                      select(id, name, original_price, release_year)
+
+steam_games_year_categorized <- release_year_wo_na %>% mutate(year_category=cut(release_year, breaks=c(-Inf, 2000, 2008, 2016, Inf), labels=c("old", "early", "recent", "latest")))
+
+summarised_year <- steam_games_year_categorized %>% 
+                    select(original_price, year_category) %>%
+                    group_by(year_category) %>%
+                    summarise(across(where(is.numeric), mean, na.rm = TRUE), n=n())
+print(summarised_year)
+```
+
+    ## # A tibble: 4 × 3
+    ##   year_category original_price     n
+    ##   <fct>                  <dbl> <int>
+    ## 1 old                     9.15   319
+    ## 2 early                  10.7    713
+    ## 3 recent                 13.5  12579
+    ## 4 latest                 79.3  21159
+
+``` r
+summarised_year$original_price <- round(summarised_year$original_price, digits=1)
+summarised_year_category <- ggplot(summarised_year) + 
+    labs(x = "Year Category", y = "Number of games") +
+    geom_col(aes(x = year_category, y = n), size = 1) +
+    geom_text(aes(x = year_category, y = n, label = n), vjust = -0.2) +
+    geom_line(aes(x = year_category, y = 160*original_price), size = 1.5, color="red", group = 1) +
+    geom_point(aes(x = year_category, y = 160*original_price), color = "#0099f9", size = 2) +
+    geom_text(
+      aes(x = year_category, y = 160*original_price, label = original_price),
+      vjust = -0.7,
+      check_overlap = TRUE
+    ) + 
+    scale_y_continuous(sec.axis = sec_axis(~./160, name = "Original Price ($)"))
+print(summarised_year_category)
+```
+
+![](Milestone_1_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+
+I categorized the games into 5 year-categories, `old` (release_year \<=
+2000), `early` (2000 \~ 2008\], `recent` (2008 \~ 2016\], and `latest`
+(\> 2016). As we can see in the chart, the majority of games are in the
+`recent` or `latest` section where the average original price is `$13.5`
+and `$79.3`, respectively. We can also conclude that newer games
+(`recent` or `latest`) usually have higher original prices than old
+games.
+
+------------------------------------------------------------------------
+
+3.  What are the distribution of the most popular genres each year
+    during *2015 - 2019*?
+
+**Summarizing Task**: 2. Compute the number of observations for at least
+one of your categorical variables.  
+**Graphing Task**: 5. Create a graph out of summarized variables that
+has at least two geom layers (***two geom_bar layers & geom_text***).  
+
+``` r
+steam_games_genre_by_year <- steam_games_with_release_year[!is.na(steam_games_with_release_year$release_year) & !is.na(steam_games_with_release_year$genre) & steam_games_with_release_year$release_year >= 2015 & steam_games_with_release_year$release_year <= 2019, ] %>% select(id, name, genre, release_year)
+
+steam_games_main_genre <- steam_games_genre_by_year
+steam_games_main_genre$main_genre <- word(steam_games_main_genre$genre, sep=",", 1)
+print(steam_games_main_genre)
+```
+
+    ## # A tibble: 30,991 × 5
+    ##       id name                            genre                   relea…¹ main_…²
+    ##    <dbl> <chr>                           <chr>                     <dbl> <chr>  
+    ##  1     1 DOOM                            Action                     2016 Action 
+    ##  2     2 PLAYERUNKNOWN'S BATTLEGROUNDS   Action,Adventure,Massi…    2017 Action 
+    ##  3     3 BATTLETECH                      Action,Adventure,Strat…    2018 Action 
+    ##  4     4 DayZ                            Action,Adventure,Massi…    2018 Action 
+    ##  5     7 Devil May Cry 5                 Action                     2019 Action 
+    ##  6     8 Human: Fall Flat                Adventure,Indie            2016 Advent…
+    ##  7     9 They Are Billions               Strategy,Early Access      2017 Strate…
+    ##  8    10 Warhammer: Chaosbane            Action,Adventure,RPG       2019 Action 
+    ##  9    11 For The King                    Adventure,Indie,RPG,St…    2018 Advent…
+    ## 10    12 Danganronpa V3: Killing Harmony Adventure                  2017 Advent…
+    ## # … with 30,981 more rows, and abbreviated variable names ¹​release_year,
+    ## #   ²​main_genre
+
+``` r
+summarised_main_genre <- ggplot(steam_games_main_genre %>% filter(main_genre %in% c("Action", "RPG", "Casual", "Indie", "Adventure", "Simulation")), aes(release_year, fill=main_genre)) +
+      labs(x = "Release Year", y = "Percentage") +
+      geom_bar(position="fill") +
+      geom_text(aes(label=..count..), stat="count", position="fill", vjust=-0.1, size=3)
+print(summarised_main_genre)
+```
+
+![](Milestone_1_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+I first make a categorical variable, `main_genre`, based on `genre`
+variable by extracting the first genre. I used a bar chart to picture
+the `genre distribution` among games from 2015 to 2019. I chose this
+time span because the number of games in this period is large enough to
+make a meaningful analysis. As we can see in the chart, the majority of
+games are always `Action` games in each year from 2015 to 2019. The
+distribution of these 6 most popular genres is similar from year to
+year.
+
+------------------------------------------------------------------------
+
+4.  What is the percentage of games that supported Chinese each year
+    during *2010 - 2019*?
+
+**Summarizing Task**: 2. Compute the number of observations for at least
+one of your categorical variables.  
+**Graphing Task**: 5. Create a graph out of summarized variables that
+has at least two geom layers (***two geom_bar layers & geom_text***).  
+
+``` r
+steam_games_language_by_year <- steam_games_with_release_year[!is.na(steam_games_with_release_year$release_year) & !is.na(steam_games_with_release_year$languages) & steam_games_with_release_year$release_year >= 2010 & steam_games_with_release_year$release_year <= 2019, ] %>% select(id, name, languages, release_year)
+
+steam_games_chinese_language_supported <- steam_games_language_by_year %>% mutate(chinese_supported=if_else(grepl("Chinese", languages), "Chinese Language Supported", "Chinese Language Not Supported"))
+print(steam_games_chinese_language_supported)
+```
+
+    ## # A tibble: 35,617 × 5
+    ##       id name                            languages               relea…¹ chine…²
+    ##    <dbl> <chr>                           <chr>                     <dbl> <chr>  
+    ##  1     1 DOOM                            English,French,Italian…    2016 Chines…
+    ##  2     2 PLAYERUNKNOWN'S BATTLEGROUNDS   English,Korean,Simplif…    2017 Chines…
+    ##  3     3 BATTLETECH                      English,French,German,…    2018 Chines…
+    ##  4     4 DayZ                            English,French,Italian…    2018 Chines…
+    ##  5     7 Devil May Cry 5                 English,French,Italian…    2019 Chines…
+    ##  6     8 Human: Fall Flat                English,French,German,…    2016 Chines…
+    ##  7     9 They Are Billions               English,Spanish - Spai…    2017 Chines…
+    ##  8    10 Warhammer: Chaosbane            English,French,Italian…    2019 Chines…
+    ##  9    11 For The King                    English,French,Italian…    2018 Chines…
+    ## 10    12 Danganronpa V3: Killing Harmony English,French,Japanes…    2017 Chines…
+    ## # … with 35,607 more rows, and abbreviated variable names ¹​release_year,
+    ## #   ²​chinese_supported
+
+``` r
+summarised_chinese_language_supported <- ggplot(steam_games_chinese_language_supported, aes(x=as.character(release_year), fill=chinese_supported)) +
+      labs(x = "Release Year", y = "Percentage") +
+      geom_bar(position="fill") +
+      geom_text(aes(label=round(..count.. / tapply(..count.., ..x.., sum)[as.character(..x..)], digits=2)), stat="count", position="fill", vjust=-0.1)
+print(summarised_chinese_language_supported)
+```
+
+![](Milestone_1_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+
+I first make a categorical variable, `chinese_supported`, based on
+`languages` variable by checking if `Chinese` is a substring of each
+`languages` entry. I used a bar chart to picture the
+`Chinese language support` among games from 2010 to 2019. I chose this
+time span since the change in the percentage of games supporting Chinese
+is significant enough to make a meaningful analysis. As we can see in
+the chart, there were only 17 games supporting Chinese back in 2010, but
+the percentage was continuously growing from 2010 to 2019. It reaches
+the maximum percentage of 33% among all games in 2019.
+
+------------------------------------------------------------------------
+
 <!----------------------------------------------------------------------------->
 
 ### 1.2 (3 points)
@@ -831,6 +1042,37 @@ refined, now that you’ve investigated your data a bit more? Which
 research questions are yielding interesting results?
 
 <!-------------------------- Start your work below ---------------------------->
+
+1.  What is the overall distribution of games by price categories and
+    the average price of each category (e.g., free, cheap, moderate,
+    expensive, luxury)?
+
+- The average price of games in `luxury` category is 1748.6. I want to
+  examine it in the future since I do not know why it is so high.
+- I think this question is well answered after summarising and graphing
+  the data.
+
+2.  What is the overall distribution of games by release year category
+    and the average price of each category (e.g., old, early, recent,
+    latest)?
+
+- I’m interested in how to design the time period to provide more
+  interesting results, therefore I want to look into it in the future.
+- I think this question is well answered after summarising and graphing
+  the data.
+
+3.  What are the distribution of the most popular genres each year
+    during *2015 - 2019*?
+
+- I would like to investigate the distribution of more genres (not just
+  popular ones) and design a better way to graph the result.
+
+4.  What is the percentage of games that supported Chinese each year
+    during *2010 - 2019*?
+
+- I think this question is well answered after summarising and graphing
+  the data.
+
 <!----------------------------------------------------------------------------->
 
 ### Attribution
