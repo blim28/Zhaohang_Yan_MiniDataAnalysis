@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 Mini Data-Analysis Deliverable 1
 ================
 
@@ -535,15 +530,16 @@ interesting to you!
 
 <!-------------------------- Start your work below ---------------------------->
 
-- `steam_games`: What variables affect the reviews of game?
+- `steam_games`: What variables reflect changes in the game industry
+  year by year, and how do they reflect them?
 - `cancer_sample`: What variables affect the diagnosis of cancer?
 - `vancouver_trees`: What variables affect the diameter of tree?
 - `apt_buildings`: How types of facilities changed by year of
   construction?
 
 **Final decision**: `steam_games`  
-I am curious about how the gaming industries changed in the past years
-by analyzing relationships between the variables.
+I’m interested in analysing relationships between variables to see how
+the gaming industries have changed over the years.
 <!----------------------------------------------------------------------------->
 
 # Important note
@@ -754,8 +750,8 @@ rest of the project, or make modifications!
 2.  What is the overall distribution of games by release year category
     and the average price of each category (e.g., old, early, recent,
     latest)?
-3.  What are the distribution of the most popular genres each year
-    during *2015 - 2019*?
+3.  What is the distribution of the most popular genres each year during
+    *2015 - 2019*?
 4.  What is the percentage of games that supported Chinese each year
     during *2010 - 2019*?
 
@@ -925,8 +921,8 @@ games.
 
 ------------------------------------------------------------------------
 
-3.  What are the distribution of the most popular genres each year
-    during *2015 - 2019*?
+3.  What is the distribution of the most popular genres each year during
+    *2015 - 2019*?
 
 **Summarizing Task**: 2. Compute the number of observations for at least
 one of your categorical variables.  
@@ -1047,7 +1043,7 @@ research questions are yielding interesting results?
     the average price of each category (e.g., free, cheap, moderate,
     expensive, luxury)?
 
-- The average price of games in `luxury` category is 1748.6. I want to
+- The average price of games in `luxury` category is \$1748.6. I want to
   examine it in the future since I do not know why it is so high.
 - I think this question is well answered after summarising and graphing
   the data.
@@ -1057,12 +1053,12 @@ research questions are yielding interesting results?
     latest)?
 
 - I’m interested in how to design the time period to provide more
-  interesting results, therefore I want to look into it in the future.
+  interesting results, so I want to look into it in the future.
 - I think this question is well answered after summarising and graphing
   the data.
 
-3.  What are the distribution of the most popular genres each year
-    during *2015 - 2019*?
+3.  What is the distribution of the most popular genres each year during
+    *2015 - 2019*?
 
 - I would like to investigate the distribution of more genres (not just
   popular ones) and design a better way to graph the result.
@@ -1072,6 +1068,8 @@ research questions are yielding interesting results?
 
 - I think this question is well answered after summarising and graphing
   the data.
+- This research question is yielding interesting results, as we see the
+  support of Chinese in the gaming industry growing from year to year.
 
 <!----------------------------------------------------------------------------->
 
