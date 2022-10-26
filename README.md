@@ -12,4 +12,4 @@ This is Zhaohang Yan’s STAT 545A Mini Data Analysis Project: Milestone 1 & Mil
   - Make a Pull Request
   
 ## Project Structure
-This project folder contains folders for each milestone ([Milestone_1](/Milestone_1) and [Milestone_2](/Milestone_2)). You can read the detailed analysis in markdown format ([Milestone_1.md](/Milestone_1/Milestone_1.md) and [Milestone_2.md](/Milestone_2/Milestone_2.md)) in each folder. [output](/output) folder contains the output files from Milestone 2 source code.
+This project folder contains folders for each milestone ([Milestone_1](/Milestone_1) and [Milestone_2](/Milestone_2)). You can read the detailed analysis in markdown format ([Milestone_1.md](/Milestone_1/Milestone_1.md) and [Milestone_2.md](/Milestone_2/Milestone_2.md)) in each folder. [output](/output) folder contains the output files generated from Milestone 2 source code.
