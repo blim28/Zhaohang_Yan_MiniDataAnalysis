@@ -1,0 +1,798 @@
+Mini Data Analysis Milestone 2
+================
+
+*To complete this milestone, you can edit [this `.rmd`
+file](https://raw.githubusercontent.com/UBC-STAT/stat545.stat.ubc.ca/master/content/mini-project/mini-project-2.Rmd)
+directly. Fill in the sections that are commented out with
+`<!--- start your work here--->`. When you are done, make sure to knit
+to an `.md` file by changing the output in the YAML header to
+`github_document`, before submitting a tagged release on canvas.*
+
+# Welcome to your second (and last) milestone in your mini data analysis project!
+
+In Milestone 1, you explored your data, came up with research questions,
+and obtained some results by making summary tables and graphs. This
+time, we will first explore more in depth the concept of *tidy data.*
+Then, you’ll be sharpening some of the results you obtained from your
+previous milestone by:
+
+- Manipulating special data types in R: factors and/or dates and times.
+- Fitting a model object to your data, and extract a result.
+- Reading and writing data as separate files.
+
+**NOTE**: The main purpose of the mini data analysis is to integrate
+what you learn in class in an analysis. Although each milestone provides
+a framework for you to conduct your analysis, it’s possible that you
+might find the instructions too rigid for your data set. If this is the
+case, you may deviate from the instructions – just make sure you’re
+demonstrating a wide range of tools and techniques taught in this class.
+
+# Instructions
+
+**To complete this milestone**, edit [this very `.Rmd`
+file](https://raw.githubusercontent.com/UBC-STAT/stat545.stat.ubc.ca/master/content/mini-project/mini-project-2.Rmd)
+directly. Fill in the sections that are tagged with
+`<!--- start your work here--->`.
+
+**To submit this milestone**, make sure to knit this `.Rmd` file to an
+`.md` file by changing the YAML output settings from
+`output: html_document` to `output: github_document`. Commit and push
+all of your work to your mini-analysis GitHub repository, and tag a
+release on GitHub. Then, submit a link to your tagged release on canvas.
+
+**Points**: This milestone is worth 55 points (compared to the 45 points
+of the Milestone 1): 45 for your analysis, and 10 for your entire
+mini-analysis GitHub repository. Details follow.
+
+**Research Questions**: In Milestone 1, you chose two research questions
+to focus on. Wherever realistic, your work in this milestone should
+relate to these research questions whenever we ask for justification
+behind your work. In the case that some tasks in this milestone don’t
+align well with one of your research questions, feel free to discuss
+your results in the context of a different research question.
+
+# Learning Objectives
+
+By the end of this milestone, you should:
+
+- Understand what *tidy* data is, and how to create it using `tidyr`.
+- Generate a reproducible and clear report using R Markdown.
+- Manipulating special data types in R: factors and/or dates and times.
+- Fitting a model object to your data, and extract a result.
+- Reading and writing data as separate files.
+
+# Setup
+
+Begin by loading your data and the tidyverse package below:
+
+``` r
+library(datateachr) # <- might contain the data you picked!
+library(tidyverse)
+```
+
+# Task 1: Tidy your data (15 points)
+
+In this task, we will do several exercises to reshape our data. The goal
+here is to understand how to do this reshaping with the `tidyr` package.
+
+A reminder of the definition of *tidy* data:
+
+- Each row is an **observation**
+- Each column is a **variable**
+- Each cell is a **value**
+
+*Tidy’ing* data is sometimes necessary because it can simplify
+computation. Other times it can be nice to organize data so that it can
+be easier to understand when read manually.
+
+### 2.1 (2.5 points)
+
+Based on the definition above, can you identify if your data is tidy or
+untidy? Go through all your columns, or if you have \>8 variables, just
+pick 8, and explain whether the data is untidy or tidy.
+
+<!--------------------------- Start your work below --------------------------->
+
+I first `select` 8 variables (id, url, types (NA values filtered), name,
+developer, release_date, achievements, and original_price (NA values
+filtered)). The resulting data is tidy since 1. Each row is an
+**observation** (observation of a specific game); 2. Each column is a
+**variable** (every column is a variable of each game); 3. Every cell is
+a **single value** (each cell is a single value of a variable).
+
+``` r
+original_tidy_steam_games <- steam_games %>% 
+                          select(id, url, types, name, developer, release_date, achievements, original_price) %>% 
+                          filter(!is.na(original_price) & !is.na(types))
+
+print(original_tidy_steam_games)
+```
+
+    ## # A tibble: 35,479 × 8
+    ##       id url                         types name  devel…¹ relea…² achie…³ origi…⁴
+    ##    <dbl> <chr>                       <chr> <chr> <chr>   <chr>     <dbl>   <dbl>
+    ##  1     1 https://store.steampowered… app   DOOM  id Sof… May 12…      54    20.0
+    ##  2     2 https://store.steampowered… app   PLAY… PUBG C… Dec 21…      37    30.0
+    ##  3     3 https://store.steampowered… app   BATT… Harebr… Apr 24…     128    40.0
+    ##  4     4 https://store.steampowered… app   DayZ  Bohemi… Dec 13…      NA    45.0
+    ##  5     5 https://store.steampowered… app   EVE … CCP     May 6,…      NA     0  
+    ##  6     7 https://store.steampowered… app   Devi… CAPCOM… Mar 7,…      51    60.0
+    ##  7     8 https://store.steampowered… app   Huma… No Bra… Jul 22…      55    15.0
+    ##  8     9 https://store.steampowered… app   They… Numant… Dec 12…      34    30.0
+    ##  9    10 https://store.steampowered… app   Warh… Eko So… May 31…      43    50.0
+    ## 10    11 https://store.steampowered… app   For … IronOa… Apr 19…      72    20.0
+    ## # … with 35,469 more rows, and abbreviated variable names ¹​developer,
+    ## #   ²​release_date, ³​achievements, ⁴​original_price
+
+<!----------------------------------------------------------------------------->
+
+### 2.2 (5 points)
+
+Now, if your data is tidy, untidy it! Then, tidy it back to it’s
+original state.
+
+If your data is untidy, then tidy it! Then, untidy it back to it’s
+original state.
+
+Be sure to explain your reasoning for this task. Show us the “before”
+and “after”.
+
+<!--------------------------- Start your work below --------------------------->
+
+Since my data is tidy, I will untidy it using `pivot_wider()` method.
+The untidy-ed data has three columns (app, bundle, sub, i.e., three game
+types, with original price values in the columns) instead of original
+`types` variable. Doing so makes it a messy data since it violates the
+definition of tidy data (Each column is a **variable**).
+
+``` r
+untidy_steam_games <- original_tidy_steam_games %>% 
+                      pivot_wider(names_from = types,
+                                  values_from = original_price)
+print(untidy_steam_games)
+```
+
+    ## # A tibble: 35,479 × 9
+    ##       id url                    name  devel…¹ relea…² achie…³   app   sub bundle
+    ##    <dbl> <chr>                  <chr> <chr>   <chr>     <dbl> <dbl> <dbl>  <dbl>
+    ##  1     1 https://store.steampo… DOOM  id Sof… May 12…      54  20.0    NA     NA
+    ##  2     2 https://store.steampo… PLAY… PUBG C… Dec 21…      37  30.0    NA     NA
+    ##  3     3 https://store.steampo… BATT… Harebr… Apr 24…     128  40.0    NA     NA
+    ##  4     4 https://store.steampo… DayZ  Bohemi… Dec 13…      NA  45.0    NA     NA
+    ##  5     5 https://store.steampo… EVE … CCP     May 6,…      NA   0      NA     NA
+    ##  6     7 https://store.steampo… Devi… CAPCOM… Mar 7,…      51  60.0    NA     NA
+    ##  7     8 https://store.steampo… Huma… No Bra… Jul 22…      55  15.0    NA     NA
+    ##  8     9 https://store.steampo… They… Numant… Dec 12…      34  30.0    NA     NA
+    ##  9    10 https://store.steampo… Warh… Eko So… May 31…      43  50.0    NA     NA
+    ## 10    11 https://store.steampo… For … IronOa… Apr 19…      72  20.0    NA     NA
+    ## # … with 35,469 more rows, and abbreviated variable names ¹​developer,
+    ## #   ²​release_date, ³​achievements
+
+Now, I will use `pivot_longer()` method to tidy it back to it’s original
+state. The glimpse of two dataset shows that they are identical.
+
+``` r
+tidy_steam_games <- untidy_steam_games %>%
+                      pivot_longer(cols = c(app, bundle, sub),
+                                           names_to = "types",
+                                           values_to = "original_price") %>%
+                      filter(!is.na(original_price)) %>%
+                      relocate(types, .after=url)
+
+glimpse(tidy_steam_games)
+```
+
+    ## Rows: 35,479
+    ## Columns: 8
+    ## $ id             <dbl> 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18,…
+    ## $ url            <chr> "https://store.steampowered.com/app/379720/DOOM/", "htt…
+    ## $ types          <chr> "app", "app", "app", "app", "app", "app", "app", "app",…
+    ## $ name           <chr> "DOOM", "PLAYERUNKNOWN'S BATTLEGROUNDS", "BATTLETECH", …
+    ## $ developer      <chr> "id Software", "PUBG Corporation", "Harebrained Schemes…
+    ## $ release_date   <chr> "May 12, 2016", "Dec 21, 2017", "Apr 24, 2018", "Dec 13…
+    ## $ achievements   <dbl> 54, 37, 128, NA, NA, 51, 55, 34, 43, 72, 41, NA, 50, NA…
+    ## $ original_price <dbl> 19.99, 29.99, 39.99, 44.99, 0.00, 59.99, 14.99, 29.99, …
+
+``` r
+glimpse(original_tidy_steam_games)
+```
+
+    ## Rows: 35,479
+    ## Columns: 8
+    ## $ id             <dbl> 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18,…
+    ## $ url            <chr> "https://store.steampowered.com/app/379720/DOOM/", "htt…
+    ## $ types          <chr> "app", "app", "app", "app", "app", "app", "app", "app",…
+    ## $ name           <chr> "DOOM", "PLAYERUNKNOWN'S BATTLEGROUNDS", "BATTLETECH", …
+    ## $ developer      <chr> "id Software", "PUBG Corporation", "Harebrained Schemes…
+    ## $ release_date   <chr> "May 12, 2016", "Dec 21, 2017", "Apr 24, 2018", "Dec 13…
+    ## $ achievements   <dbl> 54, 37, 128, NA, NA, 51, 55, 34, 43, 72, 41, NA, 50, NA…
+    ## $ original_price <dbl> 19.99, 29.99, 39.99, 44.99, 0.00, 59.99, 14.99, 29.99, …
+
+<!----------------------------------------------------------------------------->
+
+### 2.3 (7.5 points)
+
+Now, you should be more familiar with your data, and also have made
+progress in answering your research questions. Based on your interest,
+and your analyses, pick 2 of the 4 research questions to continue your
+analysis in the next four tasks:
+
+<!-------------------------- Start your work below ---------------------------->
+
+1.  **Original Research Question:** *What is the distribution of the
+    most popular genres each year during 2015 - 2019?* –\> **New
+    Research Question:** *What is the distribution of the most popular
+    genres each month in 2018?*
+2.  **Original Research Question:** *What is the percentage of games
+    that supported Chinese each year during 2010 - 2019?* –\> **New
+    Research Question:** *What is the percentage of games that supported
+    Chinese each year during 2013 - 2019?*
+
+<!----------------------------------------------------------------------------->
+
+Explain your decision for choosing the above two research questions.
+
+<!--------------------------- Start your work below --------------------------->
+
+1.  I chose research question 1 because I am curious about the
+    distribution of the popular genres by month (more granular than just
+    year) in year 2018. This question perfectly fits Task 2 so that I
+    can learn some helpful functions from instructions in Task 2 while
+    answering this question.
+2.  I chose research question 2 because I would like to find a
+    pattern/trend of the percentage of games that supported Chinese each
+    year (I chose year 2013 - 2019 since data in other years is
+    limited). I can fit a model to the data and corresponding variables
+    in Task 3 for answering this question.
+    <!----------------------------------------------------------------------------->
+
+Now, try to choose a version of your data that you think will be
+appropriate to answer these 2 questions. Use between 4 and 8 functions
+that we’ve covered so far (i.e. by filtering, cleaning, tidy’ing,
+dropping irrelevant columns, etc.).
+
+``` r
+glimpse(steam_games)
+```
+
+    ## Rows: 40,833
+    ## Columns: 21
+    ## $ id                       <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14…
+    ## $ url                      <chr> "https://store.steampowered.com/app/379720/DO…
+    ## $ types                    <chr> "app", "app", "app", "app", "app", "bundle", …
+    ## $ name                     <chr> "DOOM", "PLAYERUNKNOWN'S BATTLEGROUNDS", "BAT…
+    ## $ desc_snippet             <chr> "Now includes all three premium DLC packs (Un…
+    ## $ recent_reviews           <chr> "Very Positive,(554),- 89% of the 554 user re…
+    ## $ all_reviews              <chr> "Very Positive,(42,550),- 92% of the 42,550 u…
+    ## $ release_date             <chr> "May 12, 2016", "Dec 21, 2017", "Apr 24, 2018…
+    ## $ developer                <chr> "id Software", "PUBG Corporation", "Harebrain…
+    ## $ publisher                <chr> "Bethesda Softworks,Bethesda Softworks", "PUB…
+    ## $ popular_tags             <chr> "FPS,Gore,Action,Demons,Shooter,First-Person,…
+    ## $ game_details             <chr> "Single-player,Multi-player,Co-op,Steam Achie…
+    ## $ languages                <chr> "English,French,Italian,German,Spanish - Spai…
+    ## $ achievements             <dbl> 54, 37, 128, NA, NA, NA, 51, 55, 34, 43, 72, …
+    ## $ genre                    <chr> "Action", "Action,Adventure,Massively Multipl…
+    ## $ game_description         <chr> "About This Game Developed by id software, th…
+    ## $ mature_content           <chr> NA, "Mature Content Description  The develope…
+    ## $ minimum_requirements     <chr> "Minimum:,OS:,Windows 7/8.1/10 (64-bit versio…
+    ## $ recommended_requirements <chr> "Recommended:,OS:,Windows 7/8.1/10 (64-bit ve…
+    ## $ original_price           <dbl> 19.99, 29.99, 39.99, 44.99, 0.00, NA, 59.99, …
+    ## $ discount_price           <dbl> 14.99, NA, NA, NA, NA, 35.18, 70.42, 17.58, N…
+
+**4 Functions**:
+
+- `filter()`: Filtering only `app` type games, games with `genre` (i.e.,
+  not NA), games with languages (i.e., not NA), and games with valid
+  release_date (i.e., can convert to a valid date object using
+  `lubridate` library).
+- `select()`: Selecting only relevant columns (`id`, `name`,
+  `release_date`, `languages`, `genre`).
+  - Omitting `types` column (since we already filtered to have only
+    `app` type games) and `release_date` column since we obtained
+    `release_date_object` column based on it.
+- `mutate()`: Creating three new columns based on existing columns.
+  - `main_genre`: similar to what I created for research question \#3 in
+    Milestone 1. This is the game’s main genre.
+  - `chinese_supported`: similar to what I created for research question
+    \#4 in Milestone 1. This columns shows whether the game supports
+    Chinese language or not.
+  - `release`date_object`: use the`mdy()`function from`lubridate`to make a time-based column replacing original`release_date\`
+    column.
+- `arrange()`: Arranging observations based on `main_genre` and
+  `release_date_object` variables.
+
+<!--------------------------- Start your work below --------------------------->
+
+We also need to load `lubridate` library:
+
+``` r
+library(lubridate)
+```
+
+    ## 
+    ## Attaching package: 'lubridate'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     date, intersect, setdiff, union
+
+``` r
+base_steam_games <- steam_games %>%
+                      filter(types == "app" & !is.na(genre) & !is.na(languages) & !is.na(parse_date_time(release_date, orders=c('mdy', 'dmy', 'ydm', 'ymd'))))  %>%
+                      select(id, name, release_date, languages, genre) %>%
+                      mutate(main_genre = word(genre, sep=",", 1)) %>%
+                      mutate(chinese_supported=if_else(grepl("Chinese", languages), "Chinese Language Supported", "Chinese Language Not Supported")) %>%
+                      mutate(release_date_object = parse_date_time(release_date, orders=c('mdy', 'dmy', 'ydm', 'ymd'))) %>%
+                      select(-release_date) %>%
+                      arrange(main_genre, release_date_object)
+```
+
+    ## Warning: 4417 failed to parse.
+
+``` r
+glimpse(base_steam_games)
+```
+
+    ## Rows: 36,038
+    ## Columns: 7
+    ## $ id                  <dbl> 15701, 37252, 5772, 32634, 2770, 8845, 2097, 8225,…
+    ## $ name                <chr> "DatavizVR Demo", "Professor Teaches QuickBooks 20…
+    ## $ languages           <chr> "English", "English", "English", "English", "Engli…
+    ## $ genre               <chr> "Accounting,Education,Software Training,Utilities,…
+    ## $ main_genre          <chr> "Accounting", "Accounting", "Accounting", "Account…
+    ## $ chinese_supported   <chr> "Chinese Language Not Supported", "Chinese Languag…
+    ## $ release_date_object <dttm> 2016-12-05, 2017-04-03, 2017-09-07, 2018-11-09, 2…
+
+<!----------------------------------------------------------------------------->
+
+# Task 2: Special Data Types (10)
+
+For this exercise, you’ll be choosing two of the three tasks below –
+both tasks that you choose are worth 5 points each.
+
+But first, tasks 1 and 2 below ask you to modify a plot you made in a
+previous milestone. The plot you choose should involve plotting across
+at least three groups (whether by facetting, or using an aesthetic like
+colour). Place this plot below (you’re allowed to modify the plot if
+you’d like). If you don’t have such a plot, you’ll need to make one.
+Place the code for your plot below.
+
+<!-------------------------- Start your work below ---------------------------->
+
+Using following code, we know that `Action`, `Adventure`, `Casual`,
+`Indie`, `Simulation`, `Strategy`, and `RPG` are 7 most popular genres.
+The rest of the genres can be grouped into an `Other` category.
+
+``` r
+base_steam_games %>% count(main_genre) %>% arrange(desc(n))
+```
+
+    ## # A tibble: 23 × 2
+    ##    main_genre                n
+    ##    <chr>                 <int>
+    ##  1 Action                14492
+    ##  2 Adventure              5933
+    ##  3 Casual                 5868
+    ##  4 Indie                  3884
+    ##  5 Simulation             1902
+    ##  6 Strategy                963
+    ##  7 RPG                     808
+    ##  8 Free to Play            564
+    ##  9 Design & Illustration   456
+    ## 10 Racing                  425
+    ## # … with 13 more rows
+
+``` r
+plotting_steam_games <- base_steam_games %>% 
+                          mutate(release_year = year(release_date_object)) %>%
+                          filter(release_year >= 2015 & release_year <= 2019)
+
+summarised_main_genre <- ggplot(plotting_steam_games %>% filter(main_genre %in% c("Action", "Adventure", "Casual", "Indie", "Simulation", "Strategy", "RPG")), aes(release_year, fill=main_genre)) +
+      labs(x = "Release Year", y = "Percentage") +
+      geom_bar(position="fill") +
+      geom_text(aes(label=..count..), stat="count", position="fill", vjust=-0.1, size=3)
+
+print(summarised_main_genre)
+```
+
+![](Milestone_2_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+<!----------------------------------------------------------------------------->
+
+Now, choose two of the following tasks.
+
+1.  Produce a new plot that reorders a factor in your original plot,
+    using the `forcats` package (3 points). Then, in a sentence or two,
+    briefly explain why you chose this ordering (1 point here for
+    demonstrating understanding of the reordering, and 1 point for
+    demonstrating some justification for the reordering, which could be
+    subtle or speculative.)
+
+2.  Produce a new plot that groups some factor levels together into an
+    “other” category (or something similar), using the `forcats` package
+    (3 points). Then, in a sentence or two, briefly explain why you
+    chose this grouping (1 point here for demonstrating understanding of
+    the grouping, and 1 point for demonstrating some justification for
+    the grouping, which could be subtle or speculative.)
+
+3.  If your data has some sort of time-based column like a date (but
+    something more granular than just a year):
+
+    1.  Make a new column that uses a function from the `lubridate` or
+        `tsibble` package to modify your original time-based column. (3
+        points)
+
+        - Note that you might first have to *make* a time-based column
+          using a function like `ymd()`, but this doesn’t count.
+        - Examples of something you might do here: extract the day of
+          the year from a date, or extract the weekday, or let 24 hours
+          elapse on your dates.
+
+    2.  Then, in a sentence or two, explain how your new column might be
+        useful in exploring a research question. (1 point for
+        demonstrating understanding of the function you used, and 1
+        point for your justification, which could be subtle or
+        speculative).
+
+        - For example, you could say something like “Investigating the
+          day of the week might be insightful because penguins don’t
+          work on weekends, and so may respond differently”.
+
+<!-------------------------- Start your work below ---------------------------->
+
+**Task Number**: 2
+
+Using `fct_lump_n` function from `forcats` package, we can group genres
+other than 5 most popular genres into `Other` category.
+
+``` r
+task2_steam_games <- base_steam_games %>% 
+                        mutate(plotting_genre = fct_lump_n(main_genre, 5)) %>%
+                        mutate(release_year = year(release_date_object)) %>%
+                        filter(release_year >= 2015 & release_year <= 2019)
+
+genre_with_other <- ggplot(task2_steam_games, aes(release_year, fill=plotting_genre)) +
+      labs(x = "Release Year", y = "Percentage") +
+      geom_bar(position="fill") +
+      geom_text(aes(label=..count..), stat="count", position="fill", vjust=-0.1, size=3)
+
+print(genre_with_other)
+```
+
+![](Milestone_2_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+I chose such grouping because I want to know the distribution of 5 most
+popular genres among all the genres, including the `Other` category
+genres. I previously omitted the distribution of genres in the `Other`
+category so I grouped them and showed them in this plot.
+
+<!----------------------------------------------------------------------------->
+<!-------------------------- Start your work below ---------------------------->
+
+**Task Number**: 3
+
+1.  I will make a new column `release_month` using `month()` function
+    from `lubridate` package.
+
+``` r
+task3_steam_games <- base_steam_games %>% 
+                        mutate(release_month = month(release_date_object, label = TRUE))
+head(task3_steam_games)
+```
+
+    ## # A tibble: 6 × 8
+    ##      id name           langu…¹ genre main_…² chine…³ release_date_object relea…⁴
+    ##   <dbl> <chr>          <chr>   <chr> <chr>   <chr>   <dttm>              <ord>  
+    ## 1 15701 DatavizVR Demo English Acco… Accoun… Chines… 2016-12-05 00:00:00 Dec    
+    ## 2 37252 Professor Tea… English Acco… Accoun… Chines… 2017-04-03 00:00:00 Apr    
+    ## 3  5772 Multiplicity   English Acco… Accoun… Chines… 2017-09-07 00:00:00 Sep    
+    ## 4 32634 Quicken® Will… English Acco… Accoun… Chines… 2018-11-09 00:00:00 Nov    
+    ## 5  2770 MovieMator Vi… Englis… Acco… Accoun… Chines… 2018-12-17 00:00:00 Dec    
+    ## 6  8845 VeeR VR:VR Vi… Englis… Acco… Accoun… Chines… 2019-03-13 00:00:00 Mar    
+    ## # … with abbreviated variable names ¹​languages, ²​main_genre,
+    ## #   ³​chinese_supported, ⁴​release_month
+
+2.`month()` function from `lubridate` package gets the month (label
+instead of numeric number) when the game was released. Since my research
+question is: *What is the distribution of the most popular genres each
+month in 2018?*, I need the `release_month` to count games released in
+the month so that I can see the distribution of genres in each month in
+2018.
+
+``` r
+task3_steam_games <- task3_steam_games %>% 
+                        mutate(plotting_genre = fct_lump_n(main_genre, 5)) %>%
+                        mutate(release_year = year(release_date_object)) %>%
+                        filter(release_year == 2018)
+
+genre_month_2018 <- ggplot(task3_steam_games, aes(release_month, fill=plotting_genre)) +
+      labs(x = "Release Month", y = "Percentage") +
+      geom_bar(position="fill") +
+      geom_text(aes(label=..count..), stat="count", position="fill", vjust=-0.1, size=3)
+
+print(genre_month_2018)
+```
+
+![](Milestone_2_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+From the resulting plot, we can see that the distribution stays
+consistent even it is in `month` time scale.
+
+<!----------------------------------------------------------------------------->
+
+# Task 3: Modelling
+
+## 2.0 (no points)
+
+Pick a research question, and pick a variable of interest (we’ll call it
+“Y”) that’s relevant to the research question. Indicate these.
+
+<!-------------------------- Start your work below ---------------------------->
+
+**Research Question**: 2. *What is the percentage of games that
+supported Chinese each year during 2010 - 2019?*
+
+**Variable of interest**: `count_chinese_supported` (created in 2.1
+below): Count of games support Chinese language (in each year)
+`chinese_supported`.
+
+<!----------------------------------------------------------------------------->
+
+## 2.1 (5 points)
+
+Fit a model or run a hypothesis test that provides insight on this
+variable with respect to the research question. Store the model object
+as a variable, and print its output to screen. We’ll omit having to
+justify your choice, because we don’t expect you to know about model
+specifics in STAT 545.
+
+- **Note**: It’s OK if you don’t know how these models/tests work. Here
+  are some examples of things you can do here, but the sky’s the limit.
+
+  - You could fit a model that makes predictions on Y using another
+    variable, by using the `lm()` function.
+  - You could test whether the mean of Y equals 0 using `t.test()`, or
+    maybe the mean across two groups are different using `t.test()`, or
+    maybe the mean across multiple groups are different using `anova()`
+    (you may have to pivot your data for the latter two).
+  - You could use `lm()` to test for significance of regression.
+
+<!-------------------------- Start your work below ---------------------------->
+
+``` r
+modelling_steam_games <- base_steam_games %>% 
+                            mutate(release_year = year(release_date_object)) %>%
+                            filter(chinese_supported=="Chinese Language Supported" & release_year >= 2013 & release_year <= 2019) %>%
+                            select(id, name, release_year, chinese_supported)
+
+modelling_steam_games <- modelling_steam_games %>% 
+                            group_by(release_year) %>% 
+                            summarise(count_chinese_supported = n())
+
+model_lm <- lm(count_chinese_supported ~ I(release_year - 2013), modelling_steam_games)
+print(model_lm)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = count_chinese_supported ~ I(release_year - 2013), 
+    ##     data = modelling_steam_games)
+    ## 
+    ## Coefficients:
+    ##            (Intercept)  I(release_year - 2013)  
+    ##                 -68.75                  390.39
+
+``` r
+summary(model_lm)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = count_chinese_supported ~ I(release_year - 2013), 
+    ##     data = modelling_steam_games)
+    ## 
+    ## Residuals:
+    ##       1       2       3       4       5       6       7 
+    ##  182.75  -86.64 -267.04 -217.43  116.18  824.79 -552.61 
+    ## 
+    ## Coefficients:
+    ##                        Estimate Std. Error t value Pr(>|t|)   
+    ## (Intercept)              -68.75     328.00  -0.210  0.84225   
+    ## I(release_year - 2013)   390.39      90.97   4.291  0.00778 **
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 481.4 on 5 degrees of freedom
+    ## Multiple R-squared:  0.7865, Adjusted R-squared:  0.7438 
+    ## F-statistic: 18.42 on 1 and 5 DF,  p-value: 0.007779
+
+<!----------------------------------------------------------------------------->
+
+## 2.2 (5 points)
+
+Produce something relevant from your fitted model: either predictions on
+Y, or a single value like a regression coefficient or a p-value.
+
+- Be sure to indicate in writing what you chose to produce.
+- Your code should either output a tibble (in which case you should
+  indicate the column that contains the thing you’re looking for), or
+  the thing you’re looking for itself.
+- Obtain your results using the `broom` package if possible. If your
+  model is not compatible with the broom function you’re needing, then
+  you can obtain your results by some other means, but first indicate
+  which broom function is not compatible.
+
+<!-------------------------- Start your work below ---------------------------->
+
+I chose to produce the p-value of the model using `tidy` function from
+`broom` package.
+
+``` r
+library(broom)
+tidy(model_lm)
+```
+
+    ## # A tibble: 2 × 5
+    ##   term                   estimate std.error statistic p.value
+    ##   <chr>                     <dbl>     <dbl>     <dbl>   <dbl>
+    ## 1 (Intercept)               -68.7     328.     -0.210 0.842  
+    ## 2 I(release_year - 2013)    390.       91.0     4.29  0.00778
+
+The `p.value` column in the resulting tibble contains the p-value of the
+model, which is what I am looking for.
+
+<!----------------------------------------------------------------------------->
+
+# Task 4: Reading and writing data
+
+Get set up for this exercise by making a folder called `output` in the
+top level of your project folder / repository. You’ll be saving things
+there.
+
+## 3.1 (5 points)
+
+Take a summary table that you made from Milestone 1 (Task 4.2), and
+write it as a csv file in your `output` folder. Use the `here::here()`
+function.
+
+- **Robustness criteria**: You should be able to move your Mini Project
+  repository / project folder to some other location on your computer,
+  or move this very Rmd file to another location within your project
+  repository / folder, and your code should still work.
+- **Reproducibility criteria**: You should be able to delete the csv
+  file, and remake it simply by knitting this Rmd file.
+
+<!-------------------------- Start your work below ---------------------------->
+
+In Milestone 1 (Task 4.2), for research question 3, I proposed that I
+would investigate the distribution of more genres and design a better
+way to plot the result. I will now make summary table related to this
+question.
+
+``` r
+task4_steam_games <- base_steam_games %>% 
+                        mutate(plotting_genre = fct_lump_n(main_genre, 5)) %>%
+                        mutate(release_year = year(release_date_object)) %>%
+                        filter(release_year >= 2015 & release_year <= 2019)
+
+summary_steam_games_genre <- task4_steam_games %>% 
+                            group_by(release_year, plotting_genre) %>% 
+                            count(name="count")
+
+write_csv(summary_steam_games_genre, file=here::here("output", "summary_steam_games_genre.csv"))
+```
+
+<!----------------------------------------------------------------------------->
+
+## 3.2 (5 points)
+
+Write your model object from Task 3 to an R binary file (an RDS), and
+load it again. Be sure to save the binary file in your `output` folder.
+Use the functions `saveRDS()` and `readRDS()`.
+
+- The same robustness and reproducibility criteria as in 3.1 apply here.
+
+<!-------------------------- Start your work below ---------------------------->
+
+``` r
+# Write my model object from Task 3 to an R binary file
+saveRDS(model_lm, file=here::here("output", "model_lm.rds"))
+
+# Load it again
+loaded_model_lm <- readRDS(file=here::here("output", "model_lm.rds"))
+summary(loaded_model_lm)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = count_chinese_supported ~ I(release_year - 2013), 
+    ##     data = modelling_steam_games)
+    ## 
+    ## Residuals:
+    ##       1       2       3       4       5       6       7 
+    ##  182.75  -86.64 -267.04 -217.43  116.18  824.79 -552.61 
+    ## 
+    ## Coefficients:
+    ##                        Estimate Std. Error t value Pr(>|t|)   
+    ## (Intercept)              -68.75     328.00  -0.210  0.84225   
+    ## I(release_year - 2013)   390.39      90.97   4.291  0.00778 **
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 481.4 on 5 degrees of freedom
+    ## Multiple R-squared:  0.7865, Adjusted R-squared:  0.7438 
+    ## F-statistic: 18.42 on 1 and 5 DF,  p-value: 0.007779
+
+<!----------------------------------------------------------------------------->
+
+# Tidy Repository
+
+Now that this is your last milestone, your entire project repository
+should be organized. Here are the criteria we’re looking for.
+
+## Main README (3 points)
+
+There should be a file named `README.md` at the top level of your
+repository. Its contents should automatically appear when you visit the
+repository on GitHub.
+
+Minimum contents of the README file:
+
+- In a sentence or two, explains what this repository is, so that
+  future-you or someone else stumbling on your repository can be
+  oriented to the repository.
+- In a sentence or two (or more??), briefly explains how to engage with
+  the repository. You can assume the person reading knows the material
+  from STAT 545A. Basically, if a visitor to your repository wants to
+  explore your project, what should they know?
+
+Once you get in the habit of making README files, and seeing more README
+files in other projects, you’ll wonder how you ever got by without them!
+They are tremendously helpful.
+
+## File and Folder structure (3 points)
+
+You should have at least four folders in the top level of your
+repository: one for each milestone, and one output folder. If there are
+any other folders, these are explained in the main README.
+
+Each milestone document is contained in its respective folder, and
+nowhere else.
+
+Every level-1 folder (that is, the ones stored in the top level, like
+“Milestone1” and “output”) has a `README` file, explaining in a sentence
+or two what is in the folder, in plain language (it’s enough to say
+something like “This folder contains the source for Milestone 1”).
+
+## Output (2 points)
+
+All output is recent and relevant:
+
+- All Rmd files have been `knit`ted to their output, and all data files
+  saved from Task 4 above appear in the `output` folder.
+- All of these output files are up-to-date – that is, they haven’t
+  fallen behind after the source (Rmd) files have been updated.
+- There should be no relic output files. For example, if you were
+  knitting an Rmd to html, but then changed the output to be only a
+  markdown file, then the html file is a relic and should be deleted.
+
+Our recommendation: delete all output files, and re-knit each
+milestone’s Rmd file, so that everything is up to date and relevant.
+
+PS: there’s a way where you can run all project code using a single
+command, instead of clicking “knit” three times. More on this in STAT
+545B!
+
+## Error-free code (1 point)
+
+This Milestone 1 document knits error-free, and the Milestone 2 document
+knits error-free.
+
+## Tagged release (1 point)
+
+You’ve tagged a release for Milestone 1, and you’ve tagged a release for
+Milestone 2.
+
+### Attribution
+
+Thanks to Victor Yuan for mostly putting this together.
